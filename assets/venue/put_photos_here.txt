@@ -1,0 +1,20 @@
+Optional — drop real photos of Kings Gardens Banquet Hall here, named:
+
+    venue_1.jpg
+    venue_2.jpg
+    venue_3.jpg
+
+The website doesn't strictly need these: the live Google Map and Street
+View panels on the page already show accurate, real, always-current
+imagery of the actual venue address pulled directly from Google. This
+folder is just for extra photos if you have your own (e.g. from a site
+visit, or supplied by the venue) that you'd like to add alongside the map.
+
+If you don't add anything here, an elegant "Venue photo coming soon"
+placeholder shows instead — the page still looks complete either way.
+
+TIPS
+─────────────────────────────────────────
+• Best ratio: 4:3 landscape
+• Keep each photo under 500KB for fast loading
+• Free compression: https://squoosh.app

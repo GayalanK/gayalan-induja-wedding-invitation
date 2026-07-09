@@ -1,0 +1,19 @@
+Drop your pre-shoot photos here, named exactly:
+
+    capture_1.jpg
+    capture_2.jpg
+    capture_3.jpg
+
+The website already has elegant "Photo coming soon" placeholders showing
+in the Captured Moments section — the moment you add a file with the
+correct name, that placeholder is replaced by your real photo automatically.
+No other changes needed — just refresh the page after adding files.
+
+TIPS
+─────────────────────────────────────────
+• Best ratio: 4:5 portrait (e.g. 800×1000px)
+• Keep each photo under 500KB for fast loading
+• Free compression: https://squoosh.app
+• Want more than 3 photos? Open index.html, find the "Captured Moments"
+  section, and duplicate one of the <div class="g-item">...</div> blocks,
+  changing the file name and alt text.

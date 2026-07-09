@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gayalan &amp; Induja — Wedding Invitation | October 25, 2026</title>
+    <meta name="description" content="Join Gayalan &amp; Induja as they celebrate their wedding on Sunday, October 25, 2026 at Kings Gardens Banquet Hall, Colombo.">
+
+    <!-- Open Graph: controls the preview card when this link is shared on WhatsApp / Facebook / iMessage -->
+    <meta property="og:title" content="Gayalan &amp; Induja — Wedding Invitation">
+    <meta property="og:description" content="Sunday, October 25, 2026 · Kings Gardens Banquet Hall, Colombo">
+    <meta property="og:type" content="website">
+    <!-- IMPORTANT: once hosted (e.g. on Netlify), change this to the FULL URL,
+         e.g. https://gayalan-induja.netlify.app/assets/og-cover.jpg
+         WhatsApp/Facebook can't resolve a relative path here. -->
+    <meta property="og:image" content="https://gayalan-induja-wedding-invitation.netlify.app/assets/og-cover.jpg">
+    <meta name="theme-color" content="#6B0F0F">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Noto+Serif+Tamil:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --crimson:    #8B1A1A;
+            --deep-red:   #6B0F0F;
+            --gold:       #C9922A;
+            --gold-light: #E8C060;
+            --gold-pale:  #F5E4B0;
+            --saffron:    #E07B2A;
+            --turmeric:   #D4A017;
+            --cream:      #FDF6E3;
+            --ivory:      #FAF0DC;
+            --brown-dark: #3D1C02;
+            --brown-mid:  #6B3A1F;
+            --brown-text: #4A2C0A;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--cream);
+            color: var(--brown-text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── KOLAM PATTERN BACKGROUND ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(201,146,42,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139,26,26,0.06) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C9922A' stroke-width='0.3' opacity='0.15'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='30' cy='30' r='12'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3Cline x1='10' y1='30' x2='50' y2='30'/%3E%3Cline x1='30' y1='10' x2='30' y2='50'/%3E%3Cline x1='15' y1='15' x2='45' y2='45'/%3E%3Cline x1='45' y1='15' x2='15' y2='45'/%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── SPLASH SCREEN ── */
+        #tapScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        /* Decorative border frame */
+        #tapScreen::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 1.5px solid var(--gold);
+            pointer-events: none;
+        }
+        #tapScreen::after {
+            content: '';
+            position: absolute;
+            inset: 18px;
+            border: 0.5px solid rgba(201,146,42,0.4);
+            pointer-events: none;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+        }
+        .corner-ornament svg { width: 100%; height: 100%; }
+        .co-tl { top: 6px; left: 6px; }
+        .co-tr { top: 6px; right: 6px; transform: scaleX(-1); }
+        .co-bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
+        .co-br { bottom: 6px; right: 6px; transform: scale(-1,-1); }
+
+        /* Kolam dots on splash */
+        .kolam-splash {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(201,146,42,0.25) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .splash-om {
+            font-family: 'Yatra One', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: var(--crimson);
+            line-height: 1;
+            margin-bottom: 8px;
+            opacity: 0;
+        }
+        .splash-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.65rem, 2vw, 0.85rem);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 32px;
+            opacity: 0;
+        }
+
+        .initials-ring {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 36px;
+            opacity: 0;
+        }
+        .initials-ring svg.ring-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .initials-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 8vw, 4.5rem);
+            color: var(--crimson);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            line-height: 1;
+        }
+        .initials-amp {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .tap-btn {
+            padding: 14px 40px;
+            border: 1.5px solid var(--crimson);
+            background: transparent;
+            color: var(--crimson);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .tap-btn::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 0.5px solid rgba(139,26,26,0.3);
+            pointer-events: none;
+        }
+        .tap-btn:hover {
+            background: var(--crimson);
+            color: var(--gold-pale);
+        }
+
+        /* ── SECTION COMMON ── */
+        section { position: relative; z-index: 1; width: 100%; }
+
+        /* ── HERO ── */
+        #hero {
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 16px;
+            background: linear-gradient(180deg, #3D1C02 0%, #6B0F0F 40%, #8B1A1A 70%, var(--cream) 100%);
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C9922A' stroke-width='0.5' opacity='0.12'%3E%3Cpolygon points='40,5 75,62 5,62'/%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Cline x1='10' y1='40' x2='70' y2='40'/%3E%3Cline x1='40' y1='10' x2='40' y2='70'/%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .hero-om {
+            font-family: 'Yatra One', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--gold-light);
+            margin-bottom: 4px;
+            opacity: 0;
+        }
+        .hero-blessed {
+            font-size: clamp(0.6rem, 2vw, 0.75rem);
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: rgba(232,192,96,0.7);
+            margin-bottom: 24px;
+            opacity: 0;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px auto;
+            opacity: 0;
+        }
+        .hero-divider span {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(232,192,96,0.6);
+        }
+        .hero-divider-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+        }
+
+        .hero-tagline {
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(232,192,96,0.75);
+            margin-bottom: 6px;
+            opacity: 0;
+        }
+
+        .hero-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(5rem, 14vw, 9rem);
+            color: #fff;
+            line-height: 0.85;
+            text-shadow: 0 2px 30px rgba(201,146,42,0.4);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-names .amp {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--gold-light);
+            font-style: italic;
+            line-height: 1.2;
+        }
+
+        .hero-date {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-style: italic;
+            color: #fff;
+            margin-top: 16px;
+            opacity: 0;
+        }
+        .hero-venue {
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(232,192,96,0.8);
+            margin-top: 8px;
+            opacity: 0;
+            line-height: 1.8;
+        }
+
+        /* Countdown */
+        #countdown-wrap {
+            margin-top: 28px;
+            display: flex;
+            align-items: center;
+            gap: clamp(12px, 4vw, 32px);
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(201,146,42,0.3);
+            padding: 16px 28px;
+            opacity: 0;
+        }
+        .cd-unit { display: flex; flex-direction: column; align-items: center; min-width: 50px; }
+        .cd-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 600;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+        .cd-label {
+            font-size: clamp(0.5rem, 1.5vw, 0.65rem);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(232,192,96,0.6);
+            margin-top: 4px;
+        }
+        .cd-sep { font-size: 1.5rem; color: rgba(232,192,96,0.4); margin-bottom: 16px; font-weight: 300; }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .scroll-hint span {
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: rgba(232,192,96,0.5);
+        }
+        .scroll-line {
+            width: 1px;
+            height: 32px;
+            background: linear-gradient(to bottom, var(--gold-light), transparent);
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+        @keyframes scroll-pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+        /* ── SECTION HEADERS ── */
+        .sec-header {
+            text-align: center;
+            margin-bottom: clamp(40px, 8vw, 72px);
+        }
+        .sec-eyebrow {
+            font-size: 0.65rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--saffron);
+            margin-bottom: 12px;
+        }
+        .sec-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            color: var(--crimson);
+            line-height: 1;
+        }
+        .sec-rule {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .sec-rule-line { width: 60px; height: 1px; background: var(--gold); }
+        .sec-rule-diamond {
+            width: 8px; height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+
+        /* ── AGENDA SECTION ── */
+        #agenda {
+            padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+        }
+
+        /* Decorative banana leaf motif strip */
+        #agenda::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 8px, transparent 8px, transparent 16px, var(--crimson) 16px, var(--crimson) 24px, transparent 24px, transparent 32px);
+            margin-bottom: 60px;
+            opacity: 0.5;
+        }
+
+        .timeline {
+            max-width: 760px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+        }
+
+        .tl-item {
+            display: flex;
+            gap: 24px;
+            margin-bottom: clamp(24px, 5vw, 40px);
+            padding-left: 8px;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .tl-dot-wrap {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40px;
+        }
+        .tl-dot {
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            background: var(--cream);
+            position: relative;
+            z-index: 1;
+            margin-top: 4px;
+        }
+        .tl-dot.highlight {
+            width: 24px; height: 24px;
+            background: var(--gold);
+            border-color: var(--crimson);
+            box-shadow: 0 0 16px rgba(201,146,42,0.6);
+            margin-top: 2px;
+        }
+
+        .tl-card {
+            flex: 1;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(201,146,42,0.25);
+            padding: clamp(14px, 3vw, 24px);
+            border-left: 3px solid var(--gold);
+        }
+        .tl-card.highlight-card {
+            background: linear-gradient(135deg, rgba(139,26,26,0.06), rgba(201,146,42,0.08));
+            border-left: 3px solid var(--crimson);
+            border-color: rgba(139,26,26,0.3);
+        }
+
+        .tl-time {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 600;
+            color: var(--brown-text);
+            line-height: 1;
+        }
+        .tl-time span { font-size: 0.7em; font-weight: 400; }
+        .tl-event {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            color: var(--crimson);
+            line-height: 1.1;
+            margin: 2px 0;
+        }
+        .tl-event.highlight-event { color: var(--deep-red); font-size: clamp(1.8rem, 4.5vw, 2.5rem); }
+        .tl-tamil {
+            font-family: 'Noto Serif Tamil', serif;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            color: var(--saffron);
+            margin-bottom: 4px;
+        }
+        .tl-desc {
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            color: var(--brown-mid);
+            line-height: 1.6;
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        /* ── GALLERY ── */
+        #gallery {
+            padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
+            background: var(--ivory);
+        }
+
+        .gallery-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(10px, 2vw, 20px);
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid .g-item:last-child { grid-column: span 2; max-width: 50%; margin: 0 auto; }
+        }
+
+        .g-item {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 20px rgba(61,28,2,0.12);
+            opacity: 0;
+            transform: translateY(40px);
+            position: relative;
+            background: linear-gradient(135deg, var(--ivory), var(--gold-pale));
+        }
+        .g-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .g-item:hover img { transform: scale(1.08); }
+        .g-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(201,146,42,0.3);
+            pointer-events: none;
+        }
+        /* Placeholder shown only when a pre-shoot photo hasn't been added yet */
+        .g-placeholder {
+            display: none;
+            position: absolute;
+            inset: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--gold);
+            text-align: center;
+            padding: 16px;
+        }
+        .g-placeholder svg { width: 38px; height: 38px; opacity: 0.6; }
+        .g-placeholder span {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--brown-mid);
+            opacity: 0.65;
+        }
+        .g-item.g-empty .g-placeholder { display: flex; }
+        .g-item.g-empty::before {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 1px dashed rgba(201,146,42,0.4);
+            pointer-events: none;
+        }
+
+        /* ── RSVP ── */
+        #rsvp {
+            padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
+            background: linear-gradient(180deg, var(--ivory) 0%, #FDF0D5 100%);
+            min-height: 80svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rsvp-box {
+            width: 100%;
+            max-width: 560px;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(201,146,42,0.35);
+            padding: clamp(28px, 6vw, 56px);
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.96);
+        }
+        .rsvp-box::before, .rsvp-box::after {
+            content: '';
+            position: absolute;
+            width: 60px; height: 60px;
+            border: 1.5px solid rgba(201,146,42,0.3);
+        }
+        .rsvp-box::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+        .rsvp-box::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+        .rsvp-step {
+            width: 100%;
+            text-align: center;
+            transition: opacity 0.4s, transform 0.4s;
+        }
+
+        .rsvp-step h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: var(--brown-text);
+            margin-bottom: 20px;
+        }
+
+        .rsvp-input {
+            width: 100%;
+            max-width: 320px;
+            padding: 12px 20px;
+            border: 1.5px solid rgba(201,146,42,0.5);
+            background: rgba(255,255,255,0.9);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            text-align: center;
+            color: var(--brown-text);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .rsvp-input:focus { border-color: var(--crimson); }
+        .rsvp-input.error { border-color: #c0392b; }
+
+        #phone-error {
+            color: #c0392b;
+            font-size: 0.8rem;
+            height: 20px;
+            margin: 8px 0 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-primary {
+            padding: 12px 32px;
+            background: var(--crimson);
+            color: var(--gold-pale);
+            border: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-primary:hover { background: var(--deep-red); }
+        .btn-primary:disabled, .btn-accent:disabled, .btn-ghost:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .rsvp-wa-fallback {
+            display: block;
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--brown-mid);
+            opacity: 0.7;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: opacity 0.3s, color 0.3s;
+        }
+        .rsvp-wa-fallback:hover { opacity: 1; color: #1a7a3d; }
+
+        .btn-accent {
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--crimson);
+            border: 1.5px solid var(--crimson);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-accent:hover { background: var(--crimson); color: var(--gold-pale); }
+
+        .btn-ghost {
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--brown-mid);
+            border: 1.5px solid rgba(107,58,31,0.3);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-ghost:hover { background: rgba(107,58,31,0.08); }
+
+        .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+
+        .guest-name-display {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.2rem, 6vw, 3rem);
+            color: var(--crimson);
+            margin-bottom: 8px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 16px;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .status-accepted { background: rgba(21,128,61,0.1); color: #155a2c; border: 1px solid rgba(21,128,61,0.3); }
+        .status-declined { background: rgba(139,26,26,0.1); color: var(--crimson); border: 1px solid rgba(139,26,26,0.3); }
+
+        .rsvp-confirm-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            color: var(--crimson);
+            margin-bottom: 12px;
+        }
+        .rsvp-confirm-body {
+            font-size: 1rem;
+            color: var(--brown-mid);
+            font-style: italic;
+        }
+
+        /* ── VENUE ── */
+        #venue {
+            padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
+            background: var(--cream);
+            border-top: 1px solid rgba(201,146,42,0.2);
+        }
+
+        .venue-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        @media (min-width: 900px) {
+            .venue-grid { flex-direction: row; align-items: stretch; height: 420px; }
+        }
+
+        .venue-map {
+            flex: 1;
+            min-height: 280px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 24px rgba(61,28,2,0.12);
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+        .venue-map:nth-child(2) { transform: translateX(40px); }
+        .venue-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+        .map-caption {
+            position: absolute;
+            bottom: 10px; left: 10px;
+            background: rgba(61,28,2,0.78);
+            color: var(--gold-pale);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            pointer-events: none;
+        }
+        .venue-note {
+            max-width: 700px;
+            margin: 20px auto 0;
+            text-align: center;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--brown-mid);
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+        .venue-photo-grid .g-item { aspect-ratio: 4/3; }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 40px 20px;
+            background: var(--brown-dark);
+            text-align: center;
+            border-top: 2px solid var(--gold);
+        }
+
+        .footer-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .footer-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(232,192,96,0.7);
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .footer-credit {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: rgba(232,192,96,0.35);
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* ── MUSIC BTN ── */
+        #musicToggle {
+            position: fixed;
+            bottom: clamp(16px, 4vw, 32px);
+            left: clamp(16px, 4vw, 32px);
+            z-index: 50;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: rgba(253,246,227,0.85);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(201,146,42,0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 12px rgba(61,28,2,0.15);
+        }
+        #musicToggle:hover { transform: scale(1.1); background: rgba(253,246,227,1); }
+        #musicToggle svg { width: 22px; height: 22px; stroke: var(--crimson); fill: none; }
+        #music-label {
+            position: fixed;
+            bottom: clamp(20px, 4vw, 38px);
+            left: calc(clamp(16px, 4vw, 32px) + 56px);
+            z-index: 50;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s;
+            white-space: nowrap;
+        }
+        #musicToggle:hover ~ #music-label,
+        body:has(#musicToggle:hover) #music-label { opacity: 1; }
+
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .music-spinning { animation: spin-slow 8s linear infinite; }
+
+        /* ── DECORATIVE DIVIDER ── */
+        .ornament-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 24px 0;
+        }
+        .ornament-divider-line {
+            flex: 1;
+            max-width: 140px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+        .ornament-divider-line:last-child {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        /* Reset btn */
+        .rsvp-reset-btn {
+            position: absolute;
+            top: 12px; right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: rgba(201,146,42,0.5);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+            line-height: 1;
+            padding: 4px;
+        }
+        .rsvp-reset-btn:hover { color: var(--gold); }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+
+<body style="overflow:hidden">
+
+<!-- ══════════════════ SPLASH SCREEN ══════════════════ -->
+<div id="tapScreen">
+    <div class="kolam-splash"></div>
+
+    <!-- Corner ornaments -->
+    <div class="corner-ornament co-tl">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#C9922A" stroke-width="1.2">
+                <path d="M5,5 L5,40 Q5,5 40,5 Z" fill="rgba(201,146,42,0.08)"/>
+                <path d="M5,5 L5,30 Q5,5 30,5"/>
+                <path d="M5,5 L5,20 Q5,5 20,5"/>
+                <circle cx="5" cy="5" r="4" fill="#C9922A" stroke="none"/>
+                <circle cx="40" cy="5" r="2" fill="rgba(201,146,42,0.4)" stroke="none"/>
+                <circle cx="5" cy="40" r="2" fill="rgba(201,146,42,0.4)" stroke="none"/>
+                <line x1="15" y1="5" x2="5" y2="15" stroke-width="0.8" opacity="0.5"/>
+                <line x1="25" y1="5" x2="5" y2="25" stroke-width="0.8" opacity="0.5"/>
+            </g>
+        </svg>
+    </div>
+    <div class="corner-ornament co-tr">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#C9922A" stroke-width="1.2">
+                <path d="M5,5 L5,40 Q5,5 40,5 Z" fill="rgba(201,146,42,0.08)"/>
+                <path d="M5,5 L5,30 Q5,5 30,5"/>
+                <path d="M5,5 L5,20 Q5,5 20,5"/>
+                <circle cx="5" cy="5" r="4" fill="#C9922A" stroke="none"/>
+            </g>
+        </svg>
+    </div>
+    <div class="corner-ornament co-bl">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#C9922A" stroke-width="1.2">
+                <path d="M5,5 L5,40 Q5,5 40,5 Z" fill="rgba(201,146,42,0.08)"/>
+                <path d="M5,5 L5,30 Q5,5 30,5"/>
+                <path d="M5,5 L5,20 Q5,5 20,5"/>
+                <circle cx="5" cy="5" r="4" fill="#C9922A" stroke="none"/>
+            </g>
+        </svg>
+    </div>
+    <div class="corner-ornament co-br">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#C9922A" stroke-width="1.2">
+                <path d="M5,5 L5,40 Q5,5 40,5 Z" fill="rgba(201,146,42,0.08)"/>
+                <path d="M5,5 L5,30 Q5,5 30,5"/>
+                <path d="M5,5 L5,20 Q5,5 20,5"/>
+                <circle cx="5" cy="5" r="4" fill="#C9922A" stroke="none"/>
+            </g>
+        </svg>
+    </div>
+
+    <div style="position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px;">
+        <div class="splash-om">ஓம்</div>
+        <div class="splash-subtitle">A Sacred Union</div>
+
+        <div class="initials-ring">
+            <!-- Rotating decorative rings -->
+            <svg class="ring-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" style="animation: spin-slow 18s linear infinite;">
+                <circle cx="90" cy="90" r="84" fill="none" stroke="#C9922A" stroke-width="1" stroke-dasharray="6 4" opacity="0.5"/>
+            </svg>
+            <svg class="ring-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" style="animation: spin-slow 12s linear infinite reverse;">
+                <circle cx="90" cy="90" r="74" fill="none" stroke="rgba(201,146,42,0.35)" stroke-width="0.8" stroke-dasharray="3 8"/>
+            </svg>
+            <svg class="ring-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="90" cy="90" r="64" fill="rgba(201,146,42,0.05)" stroke="#C9922A" stroke-width="1"/>
+                <!-- 8 petal lotus -->
+                <g transform="translate(90,90)">
+                    <ellipse rx="10" ry="22" fill="rgba(201,146,42,0.15)" stroke="rgba(201,146,42,0.4)" stroke-width="0.8"/>
+                    <ellipse rx="10" ry="22" fill="rgba(201,146,42,0.15)" stroke="rgba(201,146,42,0.4)" stroke-width="0.8" transform="rotate(45)"/>
+                    <ellipse rx="10" ry="22" fill="rgba(201,146,42,0.15)" stroke="rgba(201,146,42,0.4)" stroke-width="0.8" transform="rotate(90)"/>
+                    <ellipse rx="10" ry="22" fill="rgba(201,146,42,0.15)" stroke="rgba(201,146,42,0.4)" stroke-width="0.8" transform="rotate(135)"/>
+                </g>
+            </svg>
+            <div class="initials-text">
+                G <span class="initials-amp">&amp;</span> I
+            </div>
+        </div>
+
+        <button class="tap-btn" id="tapBtn">Tap to Open</button>
+    </div>
+</div>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+    <div class="hero-om">ஓம்</div>
+    <div class="hero-blessed">Blessed by the divine • விண்ணின் ஆசியுடன்</div>
+
+    <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <span>Together with our families</span>
+        <div class="hero-divider-line"></div>
+    </div>
+
+    <p class="hero-tagline">We joyfully invite you to celebrate the wedding of</p>
+
+    <h1 class="hero-names">
+        <span>Gayalan</span>
+        <span class="amp">&amp;</span>
+        <span>Induja</span>
+    </h1>
+
+    <p class="hero-date">Sunday, October 25, 2026</p>
+    <p class="hero-venue">Kings Gardens Banquet Hall<br>154 Mattakkuliya Church Rd, Colombo</p>
+
+    <div id="countdown-wrap">
+        <div class="cd-unit">
+            <span class="cd-num" id="days">00</span>
+            <span class="cd-label">Days</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+            <span class="cd-num" id="hours">00</span>
+            <span class="cd-label">Hours</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+            <span class="cd-num" id="minutes">00</span>
+            <span class="cd-label">Mins</span>
+        </div>
+        <span class="cd-sep hidden" id="sec-sep" style="display:inline">:</span>
+        <div class="cd-unit" id="sec-unit">
+            <span class="cd-num" id="seconds">00</span>
+            <span class="cd-label">Secs</span>
+        </div>
+    </div>
+
+    <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- ══════════════════ AGENDA ══════════════════ -->
+<section id="agenda">
+    <div class="sec-header agenda-title" style="opacity:0;transform:translateY(32px)">
+        <p class="sec-eyebrow">The Sacred Schedule • திருமண நிகழ்ச்சி நிரல்</p>
+        <h2 class="sec-title">Wedding Agenda</h2>
+        <div class="sec-rule">
+            <div class="sec-rule-line"></div>
+            <div class="sec-rule-diamond"></div>
+            <div class="sec-rule-line"></div>
+        </div>
+    </div>
+
+    <div class="timeline">
+
+        <!-- 1 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">09:45 <span>A.M.</span></div>
+                <div class="tl-event">Arrival of Groom</div>
+                <div class="tl-tamil">மாப்பிள்ளை வரவேற்பு</div>
+                <p class="tl-desc">The groom arrives in procession, welcomed with nadaswaram, kolam, and auspicious blessings from elders.</p>
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">09:55 <span>A.M.</span></div>
+                <div class="tl-event">Arrival of Bride</div>
+                <div class="tl-tamil">மணப்பெண் வரவேற்பு</div>
+                <p class="tl-desc">A moment that takes every breath away — the radiant bride makes her grand entrance, adorned in silk and gold, welcomed with rose petals and nadaswaram.</p>
+            </div>
+        </div>
+
+        <!-- 3 – HIGHLIGHT -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot highlight"></div></div>
+            <div class="tl-card highlight-card">
+                <div class="tl-time">10:10 <span>A.M.</span></div>
+                <div class="tl-event highlight-event">Thali Kattuthal</div>
+                <div class="tl-tamil">தாலி கட்டுதல் • மங்கல நாண்</div>
+                <p class="tl-desc">The most sacred moment — the groom ties the holy Thali (mangalsutra) around the bride's neck, uniting their souls for eternity. Please be present to bless this divine union.</p>
+            </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">10:30 <span>A.M.</span></div>
+                <div class="tl-event">Pani Grahanam</div>
+                <div class="tl-tamil">பாணி கிரகணம்</div>
+                <p class="tl-desc">The groom takes the bride's right hand in his, symbolising his promise to be her lifelong companion and protector.</p>
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">10:45 <span>A.M.</span></div>
+                <div class="tl-event">Sapthapathi</div>
+                <div class="tl-tamil">சப்தபதி</div>
+                <p class="tl-desc">The couple takes seven sacred steps together around the holy fire, making seven vows — health, strength, prosperity, happiness, children, harmony, and eternal friendship.</p>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">10:55 <span>A.M.</span></div>
+                <div class="tl-event">Arundhathi Paarthal</div>
+                <div class="tl-tamil">அருந்ததி பார்த்தல்</div>
+                <p class="tl-desc">The couple gazes at Arundhathi — the star of fidelity — as a pledge of their unwavering devotion to each other through all lifetimes.</p>
+            </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">11:30 <span>A.M.</span></div>
+                <div class="tl-event">Thirumana Sambhurthayangal</div>
+                <div class="tl-tamil">திருமண சம்பூர்த்தியங்கள்</div>
+                <p class="tl-desc">Exchange of garlands, gifts, and blessings. Family elders shower the couple with flowers, sweets, and heartfelt wishes.</p>
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">11:45 <span>A.M.</span></div>
+                <div class="tl-event">Wedding Lunch</div>
+                <div class="tl-tamil">விருந்து</div>
+                <p class="tl-desc">A traditional Tamil feast served on banana leaves. Please join us to savour authentic cuisine prepared with love and warmth.</p>
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">02:30 <span>P.M.</span></div>
+                <div class="tl-event">Dance Floor Opening</div>
+                <div class="tl-tamil">நடன வேடிக்கை • கொண்டாட்டம்</div>
+                <p class="tl-desc">Let the celebrations begin! The newlyweds take the first dance as the floor opens to family and friends — music, joy, and memories in the making.</p>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="tl-item">
+            <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+                <div class="tl-time">03:30 <span>P.M.</span></div>
+                <div class="tl-event">Leaving the Hall</div>
+                <div class="tl-tamil">நிகழ்வு நிறைவு</div>
+                <p class="tl-desc">As the celebrations draw to a close, we bid a warm farewell to our beloved guests. Thank you for being part of our most cherished day.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ══════════════════ GALLERY ══════════════════ -->
+<section id="gallery">
+    <div class="sec-header gallery-title" style="opacity:0;transform:translateY(32px)">
+        <p class="sec-eyebrow">Our Memories • எங்கள் நினைவுகள்</p>
+        <h2 class="sec-title">Captured Moments</h2>
+        <div class="sec-rule">
+            <div class="sec-rule-line"></div>
+            <div class="sec-rule-diamond"></div>
+            <div class="sec-rule-line"></div>
+        </div>
+    </div>
+    <div class="gallery-grid" style="max-width:900px;margin:0 auto;">
+        <div class="g-item">
+            <img src="assets/preshoot/capture_1.jpg" alt="Pre-shoot photo 1" loading="lazy"
+                 onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
+            <div class="g-placeholder">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span>Photo coming soon</span>
+            </div>
+        </div>
+        <div class="g-item">
+            <img src="assets/preshoot/capture_2.jpg" alt="Pre-shoot photo 2" loading="lazy" style="object-position:top"
+                 onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
+            <div class="g-placeholder">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span>Photo coming soon</span>
+            </div>
+        </div>
+        <div class="g-item">
+            <img src="assets/preshoot/capture_3.jpg" alt="Pre-shoot photo 3" loading="lazy"
+                 onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
+            <div class="g-placeholder">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span>Photo coming soon</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════ RSVP ══════════════════ -->
+<section id="rsvp">
+    <div class="sec-header rsvp-title" style="opacity:0;transform:translateY(32px)">
+        <p class="sec-eyebrow">Join the Celebration • கொண்டாட்டத்தில் சேரும்</p>
+        <h2 class="sec-title">RSVP</h2>
+        <div class="sec-rule">
+            <div class="sec-rule-line"></div>
+            <div class="sec-rule-diamond"></div>
+            <div class="sec-rule-line"></div>
+        </div>
+    </div>
+
+    <div class="rsvp-box">
+        <button class="rsvp-reset-btn" onclick="resetRSVP()" title="Reset">↺</button>
+
+        <!-- Step 1: Enter number -->
+        <div id="rsvp-step-1" class="rsvp-step">
+            <h3>Enter your WhatsApp number</h3>
+            <input type="tel" id="mobile-number" class="rsvp-input" placeholder="07X XXX XXXX" oninput="clearError()">
+            <p id="phone-error"></p>
+            <button class="btn-primary" onclick="checkInvitation()">Find My Invitation</button>
+        </div>
+
+        <!-- Step status: already responded -->
+        <div id="rsvp-step-status" class="rsvp-step hidden" style="opacity:0;transform:translateY(8px)">
+            <p style="font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--brown-mid);margin-bottom:8px;">Welcome back</p>
+            <div class="guest-name-display" id="guest-name-status"></div>
+            <p style="font-size:0.9rem;color:var(--brown-mid);margin-bottom:12px;">Your current RSVP status</p>
+            <span class="status-badge" id="current-status-text"></span>
+            <p style="font-size:0.8rem;color:var(--brown-mid);margin-top:16px;margin-bottom:0;font-style:italic;">Would you like to change your response?</p>
+            <div class="btn-row">
+                <button class="btn-primary" onclick="goToChangeRsvp()">Change RSVP</button>
+                <button class="btn-ghost" onclick="resetRSVP()">Keep As Is</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Accept / Decline -->
+        <div id="rsvp-step-2" class="rsvp-step hidden" style="opacity:0;transform:translateY(8px)">
+            <p style="font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--brown-mid);margin-bottom:8px;">Vanakkam</p>
+            <div class="guest-name-display" id="guest-name">Dear Guest</div>
+            <p style="font-size:0.9rem;color:var(--brown-mid);margin-bottom:20px;font-style:italic;">Will you grace us with your presence?</p>
+            <div class="btn-row">
+                <button class="btn-primary" onclick="updateStatus('accepted')">Joyfully Accept</button>
+                <button class="btn-ghost" onclick="updateStatus('declined')">Regretfully Decline</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Accepted -->
+        <div id="rsvp-step-3" class="rsvp-step hidden" style="opacity:0;transform:translateY(8px)">
+            <div style="font-size:2rem;margin-bottom:12px;">🪔</div>
+            <div class="rsvp-confirm-script">நன்றி! We can't wait to see you!</div>
+            <p class="rsvp-confirm-body">Your response has been saved.<br>Please save the date — October 25, 2026</p>
+        </div>
+
+        <!-- Step 4: Declined -->
+        <div id="rsvp-step-4" class="rsvp-step hidden" style="opacity:0;transform:translateY(8px)">
+            <div style="font-size:2rem;margin-bottom:12px;">🌸</div>
+            <div class="rsvp-confirm-script">You will be missed dearly.</div>
+            <p class="rsvp-confirm-body">Thank you for letting us know.<br>We will celebrate with you in spirit.</p>
+        </div>
+    </div>
+
+    <a href="https://wa.me/94769227405?text=Vanakkam!%20I'd%20like%20to%20RSVP%20for%20the%20wedding." target="_blank" rel="noopener" class="rsvp-wa-fallback">
+        Trouble RSVPing online? Message us on WhatsApp instead →
+    </a>
+</section>
+
+<!-- ══════════════════ VENUE ══════════════════ -->
+<section id="venue">
+    <div class="sec-header map-title" style="opacity:0;transform:translateY(32px)">
+        <p class="sec-eyebrow">Find Us • இடம்</p>
+        <h2 class="sec-title">The Venue</h2>
+        <p style="font-size:1rem;color:var(--brown-mid);margin-top:12px;font-style:italic;line-height:1.8;">
+            Kings Gardens Banquet Hall<br>154 Mattakkuliya Church Rd, Colombo
+        </p>
+        <a href="https://www.google.com/maps/search/Kings+Gardens+Banquet+Hall+154+Mattakkuliya+Church+Rd+Colombo+Sri+Lanka/@6.9,79.8667,17z" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 24px;border:1.5px solid var(--gold);color:var(--brown-text);font-family:'Cormorant Garamond',serif;font-size:0.8rem;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Open in Google Maps
+        </a>
+        <div class="sec-rule" style="margin-top:20px;">
+            <div class="sec-rule-line"></div>
+            <div class="sec-rule-diamond"></div>
+            <div class="sec-rule-line"></div>
+        </div>
+    </div>
+
+    <div class="venue-grid">
+        <div class="venue-map map-item">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.3070181282!2d79.87576647531785!3d6.973058593027624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259d02c2fb705%3A0x52f3175747fd9adf!2sKings%20Gardens%20Banquet%20Hall!5e0!3m2!1sen!2slk!4v1780554449244!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <span class="map-caption">Map view</span>
+        </div>
+        <div class="venue-map map-item">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.3070181282!2d79.87576647531785!3d6.973058593027624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259d02c2fb705%3A0x52f3175747fd9adf!2sKings%20Gardens%20Banquet%20Hall!5e1!3m2!1sen!2slk!4v1780554449244!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <span class="map-caption">Satellite view</span>
+        </div>
+    </div>
+    <p class="venue-note">Live map and satellite views, pulled directly from Google Maps for 154 Mattakkuliya Church Rd — always accurate and up to date.</p>
+
+    <div class="gallery-grid venue-photo-grid" style="max-width:900px;margin:48px auto 0;">
+        <div class="g-item">
+            <img src="assets/venue/venue_1.jpg" alt="Kings Gardens Banquet Hall photo 1" loading="lazy"
+                 onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
+            <div class="g-placeholder">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span>Venue photo coming soon</span>
+            </div>
+        </div>
+        <div class="g-item">
+            <img src="assets/venue/venue_2.jpg" alt="Kings Gardens Banquet Hall photo 2" loading="lazy"
+                 onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
+            <div class="g-placeholder">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span>Venue photo coming soon</span>
+            </div>
+        </div>
+        <div class="g-item">
+            <img src="assets/venue/venue_3.jpg" alt="Kings Gardens Banquet Hall photo 3" loading="lazy"
+                 onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
+            <div class="g-placeholder">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span>Venue photo coming soon</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament-divider" style="max-width:500px;margin:60px auto 0;">
+        <div class="ornament-divider-line"></div>
+        <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="14,2 26,14 14,26 2,14" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <polygon points="14,7 21,14 14,21 7,14" fill="rgba(201,146,42,0.15)" stroke="#C9922A" stroke-width="1"/>
+            <circle cx="14" cy="14" r="3" fill="#C9922A"/>
+        </svg>
+        <div class="ornament-divider-line"></div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;padding-bottom:20px;">
+        <p style="font-family:'Great Vibes',cursive;font-size:clamp(2rem,5vw,3rem);color:var(--crimson);">With Love,</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--brown-mid);margin-top:4px;letter-spacing:0.1em;">Induja &amp; Gayalan</p>
+    </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+    <p class="footer-script">Vanakkam &amp; Thank You</p>
+    <p class="footer-names">Gayalan &amp; Induja — October 25, 2026</p>
+
+    <p class="footer-credit">Designed with ♥ for Gayalan &amp; Induja</p>
+</footer>
+
+<!-- Music button -->
+<button id="musicToggle" title="Toggle Nadaswaram BGM">
+    <svg id="musicIcon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+        <line x1="5" y1="12" x2="5" y2="12" stroke-width="2.5"/>
+        <circle cx="5" cy="9" r="1" fill="var(--crimson)" stroke="none"/>
+    </svg>
+</button>
+<div id="music-label">♪ Nadaswaram BGM</div>
+
+<audio id="weddingAudio" loop>
+    <!-- Kalyana Melam Nadaswaram — authentic Tamil wedding nadaswaram, public domain via archive.org -->
+    <source src="https://archive.org/download/tamilweddingsongs_201501/Kalyana%20Melam%20Nadaswaram.mp3" type="audio/mpeg">
+    <source src="https://archive.org/download/HeartMeltingMusicForMarraige/Kalyana%20Melam%20Nadaswaram.mp3" type="audio/mpeg">
+    <source src="https://archive.org/download/tamilweddingsongs_201501/Indian%20Classical%20Music%20Instrumental%20Nadaswaran.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// ── AUDIO ──
+const audio = document.getElementById('weddingAudio');
+const musicIcon = document.getElementById('musicIcon');
+let isPlaying = false;
+
+function toggleMusic(forcePlay = false) {
+    if (isPlaying && !forcePlay) {
+        audio.pause();
+        musicIcon.classList.remove('music-spinning');
+        isPlaying = false;
+    } else {
+        audio.play().then(() => {
+            musicIcon.classList.add('music-spinning');
+            isPlaying = true;
+        }).catch(() => {});
+    }
+}
+document.getElementById('musicToggle').addEventListener('click', e => {
+    e.stopPropagation();
+    toggleMusic();
+});
+
+// ── SPLASH → OPEN ──
+const tapScreen = document.getElementById('tapScreen');
+gsap.registerPlugin(ScrollTrigger);
+
+window.addEventListener('load', () => {
+    document.body.style.overflow = 'hidden';
+
+    // Animate splash elements in
+    gsap.to('.splash-om',       { opacity:1, y:0, duration:1, ease:'power3.out', delay:0.2 });
+    gsap.to('.splash-subtitle', { opacity:1, y:0, duration:1, ease:'power3.out', delay:0.5 });
+    gsap.to('.initials-ring',   { opacity:1, y:0, duration:1, ease:'power3.out', delay:0.8 });
+    gsap.to('.tap-btn',         { opacity:1, y:0, duration:1, ease:'power3.out', delay:1.1 });
+
+    tapScreen.addEventListener('click', () => {
+        toggleMusic(true);
+
+        const tl = gsap.timeline();
+        tl.to('#tapScreen .z-30, #tapScreen > div:last-child', { opacity:0, y:-20, duration:0.35 })
+          .to(tapScreen, {
+              y: '-100%',
+              duration: 1.2,
+              ease: 'power4.inOut',
+              onComplete: () => {
+                  tapScreen.style.display = 'none';
+                  document.body.style.overflow = 'auto';
+                  document.body.style.overflowX = 'hidden';
+              }
+          }, '-=0.1')
+          .to('.hero-om',       { opacity:1, y:0, duration:0.8, ease:'power3.out' }, '-=0.7')
+          .to('.hero-blessed',  { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.6')
+          .to('.hero-divider',  { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.55')
+          .to('.hero-tagline',  { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.5')
+          .to('.hero-names',    { opacity:1, y:0, duration:1.0, ease:'power4.out' }, '-=0.45')
+          .to('.hero-date',     { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.6')
+          .to('.hero-venue',    { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.55')
+          .to('#countdown-wrap',{ opacity:1, y:0, duration:0.8, ease:'power3.out' }, '-=0.5')
+          .to('.scroll-hint',   { opacity:1, duration:1, ease:'power2.inOut' }, '-=0.3');
+    });
+});
+
+// ── SCROLL ANIMATIONS ──
+gsap.to('.agenda-title', {
+    scrollTrigger: { trigger: '.agenda-title', start: 'top 85%' },
+    y:0, opacity:1, duration:1.2, ease:'power3.out'
+});
+gsap.utils.toArray('.tl-item').forEach((item, i) => {
+    gsap.to(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        y:0, opacity:1, duration:0.9, delay: i * 0.08, ease:'back.out(1.2)'
+    });
+});
+gsap.to('.gallery-title', {
+    scrollTrigger: { trigger: '.gallery-title', start: 'top 85%' },
+    y:0, opacity:1, duration:1.2, ease:'power3.out'
+});
+gsap.to('.g-item', {
+    scrollTrigger: { trigger: '.gallery-title', start: 'top 75%' },
+    y:0, opacity:1, duration:1, stagger:0.18, ease:'power3.out'
+});
+gsap.to('.rsvp-title', {
+    scrollTrigger: { trigger: '.rsvp-title', start: 'top 85%' },
+    y:0, opacity:1, duration:1.2, ease:'power3.out'
+});
+gsap.to('.rsvp-box', {
+    scrollTrigger: { trigger: '.rsvp-box', start: 'top 80%' },
+    scale:1, opacity:1, duration:1.2, ease:'elastic.out(1,0.8)'
+});
+gsap.to('.map-title', {
+    scrollTrigger: { trigger: '.map-title', start: 'top 85%' },
+    y:0, opacity:1, duration:1
+});
+gsap.utils.toArray('.venue-map').forEach((el, i) => {
+    gsap.to(el, {
+        scrollTrigger: { trigger: '.venue-grid', start: 'top 80%' },
+        x:0, opacity:1, duration:1, delay: i * 0.2, ease:'power3.out'
+    });
+});
+gsap.to('.venue-photo-grid .g-item', {
+    scrollTrigger: { trigger: '.venue-photo-grid', start: 'top 88%' },
+    y:0, opacity:1, duration:0.9, stagger:0.15, ease:'power3.out'
+});
+
+// ── COUNTDOWN ──
+const weddingDate = new Date("October 25, 2026 09:45:00").getTime();
+function updateCountdown() {
+    const now = new Date().getTime();
+    const dist = weddingDate - now;
+    if (dist < 0) return;
+    document.getElementById('days').innerText    = String(Math.floor(dist / 86400000)).padStart(2,'0');
+    document.getElementById('hours').innerText   = String(Math.floor((dist % 86400000) / 3600000)).padStart(2,'0');
+    document.getElementById('minutes').innerText = String(Math.floor((dist % 3600000) / 60000)).padStart(2,'0');
+    const secEl = document.getElementById('seconds');
+    if (secEl) secEl.innerText = String(Math.floor((dist % 60000) / 1000)).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── RSVP LOGIC ──
+// This connects to a free Google Sheet "database" via Google Apps Script.
+// Setup instructions are in RSVP-SETUP.md — paste your deployed Web App URL below.
+const RSVP_API_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+let currentGuestPhone = '';
+
+function normalizePhone(p) {
+    return p.replace(/[^0-9]/g, '').replace(/^94/, '0').replace(/^0?(\d{9})$/, '0$1');
+}
+
+function showError(msg) {
+    const el = document.getElementById('phone-error');
+    const inp = document.getElementById('mobile-number');
+    el.innerText = msg;
+    el.style.opacity = 1;
+    inp.classList.add('error');
+}
+function clearError() {
+    const el = document.getElementById('phone-error');
+    const inp = document.getElementById('mobile-number');
+    el.style.opacity = 0;
+    inp.classList.remove('error');
+}
+
+function transitionStep(hideId, showId) {
+    const hideEl = document.getElementById(hideId);
+    const showEl = document.getElementById(showId);
+    if (hideEl && !hideEl.classList.contains('hidden')) {
+        hideEl.style.opacity = 0;
+        hideEl.style.transform = 'translateY(8px)';
+        setTimeout(() => {
+            hideEl.classList.add('hidden');
+            showEl.classList.remove('hidden');
+            setTimeout(() => {
+                showEl.style.opacity = 1;
+                showEl.style.transform = 'translateY(0)';
+            }, 50);
+        }, 400);
+    } else {
+        showEl.classList.remove('hidden');
+        setTimeout(() => {
+            showEl.style.opacity = 1;
+            showEl.style.transform = 'translateY(0)';
+        }, 50);
+    }
+}
+
+function isConfigured() {
+    return RSVP_API_URL && RSVP_API_URL.startsWith('https://script.google.com/');
+}
+
+function checkInvitation() {
+    clearError();
+    const rawNumber = document.getElementById('mobile-number').value;
+    const number = normalizePhone(rawNumber);
+
+    if (number.length < 9) {
+        showError('Please enter a valid mobile number.');
+        return;
+    }
+    if (!isConfigured()) {
+        showError('RSVP system is being set up — please WhatsApp us instead, see link below.');
+        return;
+    }
+
+    const btn = document.querySelector('button[onclick="checkInvitation()"]');
+    btn.innerText = 'Searching...';
+    btn.disabled = true;
+
+    fetch(`${RSVP_API_URL}?action=check&phone=${encodeURIComponent(number)}`)
+        .then(r => r.json())
+        .then(data => {
+            btn.innerText = 'Find My Invitation';
+            btn.disabled = false;
+            if (data.success) {
+                currentGuestPhone = number;
+                const status = data.guest.status || 'pending';
+                if (status === 'pending') {
+                    document.getElementById('guest-name').innerText = data.guest.name;
+                    transitionStep('rsvp-step-1', 'rsvp-step-2');
+                } else {
+                    document.getElementById('guest-name-status').innerText = data.guest.name;
+                    const stEl = document.getElementById('current-status-text');
+                    stEl.innerText = status;
+                    stEl.className = 'status-badge ' + (status === 'accepted' ? 'status-accepted' : 'status-declined');
+                    transitionStep('rsvp-step-1', 'rsvp-step-status');
+                }
+            } else {
+                showError(data.message || 'Invitation not found. Please check your number, or WhatsApp us below.');
+            }
+        }).catch(() => {
+            btn.innerText = 'Find My Invitation';
+            btn.disabled = false;
+            showError('Could not connect. Please check your internet, or WhatsApp us below.');
+        });
+}
+
+function goToChangeRsvp() {
+    document.getElementById('guest-name').innerText = document.getElementById('guest-name-status').innerText;
+    transitionStep('rsvp-step-status', 'rsvp-step-2');
+}
+
+function updateStatus(statusType) {
+    const btnAccept = document.querySelector('button[onclick="updateStatus(\'accepted\')"]');
+    const btnDecline = document.querySelector('button[onclick="updateStatus(\'declined\')"]');
+    if (btnAccept) btnAccept.disabled = true;
+    if (btnDecline) btnDecline.disabled = true;
+
+    fetch(RSVP_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // text/plain avoids a CORS preflight that Apps Script can't answer
+        body: JSON.stringify({ action: 'update', phone: currentGuestPhone, status: statusType })
+    }).then(r => r.json()).then(data => {
+        if (btnAccept) btnAccept.disabled = false;
+        if (btnDecline) btnDecline.disabled = false;
+        if (data.success) {
+            transitionStep('rsvp-step-2', statusType === 'accepted' ? 'rsvp-step-3' : 'rsvp-step-4');
+        } else {
+            alert('Could not save your response. Please try again, or WhatsApp us directly.');
+        }
+    }).catch(() => {
+        if (btnAccept) btnAccept.disabled = false;
+        if (btnDecline) btnDecline.disabled = false;
+        alert('Could not connect. Please try again, or WhatsApp us directly.');
+    });
+}
+
+function resetRSVP() {
+    document.getElementById('mobile-number').value = '';
+    clearError();
+    ['rsvp-step-2','rsvp-step-3','rsvp-step-4','rsvp-step-status'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.classList.contains('hidden')) {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(8px)';
+            setTimeout(() => el.classList.add('hidden'), 400);
+        }
+    });
+    setTimeout(() => {
+        const s1 = document.getElementById('rsvp-step-1');
+        s1.classList.remove('hidden');
+        setTimeout(() => { s1.style.opacity = 1; s1.style.transform = 'translateY(0)'; }, 50);
+    }, 420);
+}
+</script>
+</body>
+</html>

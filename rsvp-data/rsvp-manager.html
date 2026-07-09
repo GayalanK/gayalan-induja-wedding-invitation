@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP Admin — Gayalan & Induja</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+    :root {
+        --crimson: #8B1A1A;
+        --gold: #C9922A;
+        --cream: #FDF6E3;
+        --brown: #4A2C0A;
+        --green: #1a6b2a;
+        --red: #8B1A1A;
+        --gray-bg: #f9f5ee;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: var(--cream);
+        color: var(--brown);
+        min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+        background: var(--crimson);
+        color: #fff;
+        padding: 20px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        border-bottom: 3px solid var(--gold);
+    }
+    header h1 { font-size: 1.3rem; font-weight: 600; letter-spacing: 0.05em; }
+    header p  { font-size: 0.8rem; opacity: 0.75; margin-top: 2px; }
+    .header-right { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .sync-note {
+        background: #fff8e8;
+        border-bottom: 1px solid rgba(201,146,42,0.25);
+        padding: 12px 32px;
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: var(--brown);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+        padding: 9px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .btn-gold    { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: #a97820; }
+    .btn-green   { background: var(--green); color: #fff; }
+    .btn-green:hover { background: #145522; }
+    .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+    .btn-danger  { background: #c0392b; color: #fff; }
+    .btn-danger:hover { background: #96281b; }
+    .btn-sm { padding: 5px 12px; font-size: 0.72rem; border-radius: 3px; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+        display: flex;
+        gap: 16px;
+        padding: 16px 32px;
+        background: #fff;
+        border-bottom: 1px solid rgba(201,146,42,0.2);
+        flex-wrap: wrap;
+    }
+    .stat-card {
+        flex: 1;
+        min-width: 100px;
+        background: var(--gray-bg);
+        border: 1px solid rgba(201,146,42,0.2);
+        border-radius: 6px;
+        padding: 12px 16px;
+        text-align: center;
+    }
+    .stat-num { font-size: 1.8rem; font-weight: 700; line-height: 1; }
+    .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-top: 3px; }
+    .stat-total   .stat-num { color: var(--brown); }
+    .stat-accept  .stat-num { color: var(--green); }
+    .stat-decline .stat-num { color: var(--red); }
+    .stat-pending .stat-num { color: #b8860b; }
+
+    /* ── CONTROLS ── */
+    .controls {
+        padding: 16px 32px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        background: #fff;
+        border-bottom: 1px solid rgba(201,146,42,0.15);
+    }
+    .search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-wrap input {
+        width: 100%;
+        padding: 9px 12px 9px 36px;
+        border: 1.5px solid rgba(201,146,42,0.35);
+        border-radius: 4px;
+        font-size: 0.85rem;
+        background: var(--gray-bg);
+        color: var(--brown);
+        outline: none;
+    }
+    .search-wrap input:focus { border-color: var(--gold); }
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.4;
+        pointer-events: none;
+    }
+    select {
+        padding: 9px 12px;
+        border: 1.5px solid rgba(201,146,42,0.35);
+        border-radius: 4px;
+        font-size: 0.85rem;
+        background: var(--gray-bg);
+        color: var(--brown);
+        outline: none;
+        cursor: pointer;
+    }
+    select:focus { border-color: var(--gold); }
+
+    /* ── ADD GUEST FORM ── */
+    .add-form-wrap {
+        padding: 0 32px;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease, padding 0.4s;
+    }
+    .add-form-wrap.open { max-height: 200px; padding: 16px 32px; }
+    .add-form {
+        background: #fff;
+        border: 1.5px solid rgba(201,146,42,0.3);
+        border-radius: 6px;
+        padding: 16px 20px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+    .form-field { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 150px; }
+    .form-field label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; }
+    .form-field input, .form-field select {
+        padding: 8px 12px;
+        border: 1.5px solid rgba(201,146,42,0.3);
+        border-radius: 4px;
+        font-size: 0.88rem;
+        background: var(--gray-bg);
+        color: var(--brown);
+        outline: none;
+    }
+    .form-field input:focus, .form-field select:focus { border-color: var(--gold); }
+
+    /* ── TABLE ── */
+    .table-wrap {
+        padding: 20px 32px 40px;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+        background: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 1px 8px rgba(74,44,10,0.07);
+    }
+    thead { background: var(--crimson); color: #fff; }
+    th {
+        padding: 11px 14px;
+        text-align: left;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        user-select: none;
+    }
+    th:hover { background: rgba(255,255,255,0.1); }
+    th .sort-arrow { opacity: 0.4; margin-left: 4px; }
+    th.sorted-asc .sort-arrow::after  { content: ' ▲'; opacity: 1; }
+    th.sorted-desc .sort-arrow::after { content: ' ▼'; opacity: 1; }
+
+    tbody tr { border-bottom: 1px solid rgba(201,146,42,0.1); transition: background 0.15s; }
+    tbody tr:hover { background: rgba(201,146,42,0.04); }
+    tbody tr:last-child { border-bottom: none; }
+    td { padding: 10px 14px; vertical-align: middle; }
+
+    .badge {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+    .badge-accepted { background: rgba(26,107,42,0.12); color: var(--green); }
+    .badge-declined { background: rgba(139,26,26,0.1);  color: var(--crimson); }
+    .badge-pending  { background: rgba(184,134,11,0.1);  color: #8a6200; }
+
+    .action-btns { display: flex; gap: 6px; white-space: nowrap; }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: rgba(74,44,10,0.4);
+    }
+    .empty-state svg { width: 48px; height: 48px; margin-bottom: 12px; opacity: 0.3; }
+    .empty-state p { font-size: 1rem; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+        background: #fff;
+        border-radius: 8px;
+        padding: 28px 32px;
+        width: 90%;
+        max-width: 440px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        position: relative;
+    }
+    .modal h3 { font-size: 1.1rem; color: var(--crimson); margin-bottom: 16px; }
+    .modal .form-field { min-width: 100%; margin-bottom: 12px; }
+    .modal-btns { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
+    .modal-close {
+        position: absolute;
+        top: 12px; right: 14px;
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: rgba(74,44,10,0.4);
+    }
+    .modal-close:hover { color: var(--crimson); }
+
+    /* ── TOAST ── */
+    #toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--crimson);
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s;
+        z-index: 9999;
+        pointer-events: none;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.green { background: var(--green); }
+
+    @media (max-width: 600px) {
+        header, .stats-bar, .controls, .table-wrap, .add-form-wrap.open { padding-left: 16px; padding-right: 16px; }
+        .stat-card { min-width: 70px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div>
+        <h1>🪔 RSVP Guest Manager</h1>
+        <p>Gayalan &amp; Induja — October 25, 2026</p>
+    </div>
+    <div class="header-right">
+        <button class="btn btn-outline" onclick="toggleAddForm()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Guest
+        </button>
+        <a href="https://docs.google.com/spreadsheets/d/17oNu4nre67XaLUhCIZa6z7EtxoP677vu/edit?usp=sharing&ouid=102144703153241923766&rtpof=true&sd=true" target="_blank" rel="noopener" class="btn btn-outline" style="text-decoration:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open Live Sheet
+        </a>
+        <button class="btn btn-gold" onclick="exportExcel()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export Excel
+        </button>
+    </div>
+</header>
+
+<div class="sync-note">
+    📋 The website's RSVP form now writes directly to your <a href="https://docs.google.com/spreadsheets/d/17oNu4nre67XaLUhCIZa6z7EtxoP677vu/edit?usp=sharing&ouid=102144703153241923766&rtpof=true&sd=true" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;"><strong>Google Sheet</strong></a> — that Sheet is the live, always-current guest list.
+    This page works entirely offline and on its own, stored only in this browser, so it's best used as a quick local view, a manual backup tool, or for guests who RSVP by phone/WhatsApp instead of the website.
+</div>
+
+<!-- ADD GUEST FORM (collapsible) -->
+<div class="add-form-wrap" id="addFormWrap">
+    <div class="add-form">
+        <div class="form-field">
+            <label>Full Name *</label>
+            <input type="text" id="af-name" placeholder="e.g. Priya Suresh">
+        </div>
+        <div class="form-field">
+            <label>WhatsApp Number *</label>
+            <input type="tel" id="af-phone" placeholder="07X XXX XXXX">
+        </div>
+        <div class="form-field" style="max-width:140px;">
+            <label>RSVP Status</label>
+            <select id="af-status">
+                <option value="pending">Pending</option>
+                <option value="accepted">Accepted</option>
+                <option value="declined">Declined</option>
+            </select>
+        </div>
+        <div class="form-field" style="max-width:160px;">
+            <label>Side</label>
+            <select id="af-side">
+                <option value="">— Select —</option>
+                <option value="Groom's Side">Groom's Side</option>
+                <option value="Bride's Side">Bride's Side</option>
+                <option value="Both">Both</option>
+            </select>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+            <button class="btn btn-green" onclick="addGuest()">Add Guest</button>
+            <button class="btn btn-outline" style="background:transparent;color:var(--brown);border-color:rgba(74,44,10,0.25);" onclick="toggleAddForm()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stat-card stat-total">
+        <div class="stat-num" id="s-total">0</div>
+        <div class="stat-label">Total Invited</div>
+    </div>
+    <div class="stat-card stat-accept">
+        <div class="stat-num" id="s-accepted">0</div>
+        <div class="stat-label">Accepted</div>
+    </div>
+    <div class="stat-card stat-decline">
+        <div class="stat-num" id="s-declined">0</div>
+        <div class="stat-label">Declined</div>
+    </div>
+    <div class="stat-card stat-pending">
+        <div class="stat-num" id="s-pending">0</div>
+        <div class="stat-label">Pending</div>
+    </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+    <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search name or phone..." oninput="renderTable()">
+    </div>
+    <select id="filterStatus" onchange="renderTable()">
+        <option value="all">All Status</option>
+        <option value="accepted">Accepted</option>
+        <option value="declined">Declined</option>
+        <option value="pending">Pending</option>
+    </select>
+    <select id="filterSide" onchange="renderTable()">
+        <option value="all">All Sides</option>
+        <option value="Groom's Side">Groom's Side</option>
+        <option value="Bride's Side">Bride's Side</option>
+        <option value="Both">Both</option>
+    </select>
+</div>
+
+<!-- TABLE -->
+<div class="table-wrap">
+    <table id="guestTable">
+        <thead>
+            <tr>
+                <th onclick="sortBy('id')">#<span class="sort-arrow"></span></th>
+                <th onclick="sortBy('name')">Name<span class="sort-arrow"></span></th>
+                <th onclick="sortBy('phone')">WhatsApp<span class="sort-arrow"></span></th>
+                <th onclick="sortBy('side')">Side<span class="sort-arrow"></span></th>
+                <th onclick="sortBy('status')">Status<span class="sort-arrow"></span></th>
+                <th onclick="sortBy('respondedAt')">Responded<span class="sort-arrow"></span></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <p>No guests found. Add your first guest above.</p>
+    </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="editModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <h3>Edit Guest</h3>
+        <input type="hidden" id="em-id">
+        <div class="form-field">
+            <label>Full Name</label>
+            <input type="text" id="em-name">
+        </div>
+        <div class="form-field">
+            <label>WhatsApp Number</label>
+            <input type="tel" id="em-phone">
+        </div>
+        <div class="form-field">
+            <label>RSVP Status</label>
+            <select id="em-status">
+                <option value="pending">Pending</option>
+                <option value="accepted">Accepted</option>
+                <option value="declined">Declined</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label>Side</label>
+            <select id="em-side">
+                <option value="">— Select —</option>
+                <option value="Groom's Side">Groom's Side</option>
+                <option value="Bride's Side">Bride's Side</option>
+                <option value="Both">Both</option>
+            </select>
+        </div>
+        <div class="modal-btns">
+            <button class="btn btn-outline" style="color:var(--brown);border-color:rgba(74,44,10,0.25);background:transparent;" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-gold" onclick="saveEdit()">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ── DATA STORE ──
+const STORE_KEY = 'gayalan_induja_rsvp';
+
+function load()   { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch { return []; } }
+function save(d)  { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
+
+let guests   = load();
+let sortCol  = 'id';
+let sortDir  = 'asc';
+let addOpen  = false;
+
+// ── SEED DEMO DATA if empty ──
+if (guests.length === 0) {
+    const demo = [
+        { id:1, name:'Priya Suresh',      phone:'0771234567', side:"Bride's Side",  status:'accepted', respondedAt:'2026-09-01 10:22' },
+        { id:2, name:'Rajan Navaratnam',  phone:'0762345678', side:"Groom's Side",  status:'accepted', respondedAt:'2026-09-02 14:05' },
+        { id:3, name:'Kavitha Balendra',  phone:'0753456789', side:"Bride's Side",  status:'declined', respondedAt:'2026-09-03 09:47' },
+        { id:4, name:'Murali Krishnan',   phone:'0774567890', side:"Groom's Side",  status:'pending',  respondedAt:'' },
+        { id:5, name:'Shalini Thavaraj',  phone:'0705678901', side:'Both',           status:'pending',  respondedAt:'' },
+    ];
+    guests = demo;
+    save(guests);
+}
+
+// ── STATS ──
+function updateStats() {
+    const t = guests.length;
+    const a = guests.filter(g => g.status === 'accepted').length;
+    const d = guests.filter(g => g.status === 'declined').length;
+    const p = guests.filter(g => g.status === 'pending').length;
+    document.getElementById('s-total').textContent    = t;
+    document.getElementById('s-accepted').textContent = a;
+    document.getElementById('s-declined').textContent = d;
+    document.getElementById('s-pending').textContent  = p;
+}
+
+// ── SORT ──
+function sortBy(col) {
+    if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+    else { sortCol = col; sortDir = 'asc'; }
+    document.querySelectorAll('th').forEach(th => th.classList.remove('sorted-asc','sorted-desc'));
+    const ths = document.querySelectorAll('th');
+    const cols = ['id','name','phone','side','status','respondedAt','actions'];
+    const idx = cols.indexOf(col);
+    if (idx >= 0 && ths[idx]) ths[idx].classList.add(sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+    renderTable();
+}
+
+// ── RENDER ──
+function renderTable() {
+    updateStats();
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const fStatus = document.getElementById('filterStatus').value;
+    const fSide   = document.getElementById('filterSide').value;
+
+    let filtered = guests.filter(g => {
+        const matchSearch = g.name.toLowerCase().includes(search) || g.phone.includes(search);
+        const matchStatus = fStatus === 'all' || g.status === fStatus;
+        const matchSide   = fSide   === 'all' || g.side === fSide;
+        return matchSearch && matchStatus && matchSide;
+    });
+
+    filtered.sort((a, b) => {
+        let av = a[sortCol] ?? '', bv = b[sortCol] ?? '';
+        if (sortCol === 'id') { av = +av; bv = +bv; }
+        if (av < bv) return sortDir === 'asc' ? -1 :  1;
+        if (av > bv) return sortDir === 'asc' ?  1 : -1;
+        return 0;
+    });
+
+    const tbody = document.getElementById('tableBody');
+    const empty = document.getElementById('emptyState');
+
+    if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+
+    tbody.innerHTML = filtered.map((g, i) => `
+        <tr>
+            <td style="opacity:0.45;font-size:0.8rem;">${g.id}</td>
+            <td><strong>${escHtml(g.name)}</strong></td>
+            <td style="font-family:monospace;">${escHtml(g.phone)}</td>
+            <td style="opacity:0.7;">${escHtml(g.side || '—')}</td>
+            <td><span class="badge badge-${g.status}">${g.status}</span></td>
+            <td style="opacity:0.55;font-size:0.8rem;">${g.respondedAt || '—'}</td>
+            <td>
+                <div class="action-btns">
+                    <button class="btn btn-gold btn-sm" onclick="openEdit(${g.id})">Edit</button>
+                    <button class="btn btn-sm" style="background:rgba(26,107,42,0.12);color:var(--green);" onclick="setStatus(${g.id},'accepted')">✓</button>
+                    <button class="btn btn-sm" style="background:rgba(139,26,26,0.1);color:var(--crimson);" onclick="setStatus(${g.id},'declined')">✗</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteGuest(${g.id})">Del</button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── ADD GUEST ──
+function toggleAddForm() {
+    addOpen = !addOpen;
+    document.getElementById('addFormWrap').classList.toggle('open', addOpen);
+    if (addOpen) document.getElementById('af-name').focus();
+}
+
+function addGuest() {
+    const name  = document.getElementById('af-name').value.trim();
+    const phone = document.getElementById('af-phone').value.trim();
+    const status= document.getElementById('af-status').value;
+    const side  = document.getElementById('af-side').value;
+    if (!name || !phone) { toast('Name and phone are required', false); return; }
+    if (guests.find(g => g.phone === phone)) { toast('Phone number already exists', false); return; }
+    const newId = guests.length ? Math.max(...guests.map(g => g.id)) + 1 : 1;
+    guests.push({ id: newId, name, phone, side, status, respondedAt: status !== 'pending' ? now() : '' });
+    save(guests);
+    document.getElementById('af-name').value  = '';
+    document.getElementById('af-phone').value = '';
+    document.getElementById('af-status').value = 'pending';
+    document.getElementById('af-side').value   = '';
+    renderTable();
+    toast(`${name} added!`, true);
+}
+
+// ── QUICK STATUS ──
+function setStatus(id, status) {
+    const g = guests.find(g => g.id === id);
+    if (!g) return;
+    g.status = status;
+    g.respondedAt = now();
+    save(guests);
+    renderTable();
+    toast(`${g.name} marked as ${status}`, true);
+}
+
+// ── DELETE ──
+function deleteGuest(id) {
+    const g = guests.find(g => g.id === id);
+    if (!g) return;
+    if (!confirm(`Delete ${g.name}? This cannot be undone.`)) return;
+    guests = guests.filter(g => g.id !== id);
+    save(guests);
+    renderTable();
+    toast(`${g.name} removed`, false);
+}
+
+// ── EDIT MODAL ──
+function openEdit(id) {
+    const g = guests.find(g => g.id === id);
+    if (!g) return;
+    document.getElementById('em-id').value     = g.id;
+    document.getElementById('em-name').value   = g.name;
+    document.getElementById('em-phone').value  = g.phone;
+    document.getElementById('em-status').value = g.status;
+    document.getElementById('em-side').value   = g.side || '';
+    document.getElementById('editModal').classList.add('open');
+}
+function closeModal() { document.getElementById('editModal').classList.remove('open'); }
+function saveEdit() {
+    const id   = +document.getElementById('em-id').value;
+    const g    = guests.find(g => g.id === id);
+    if (!g) return;
+    const oldStatus = g.status;
+    g.name   = document.getElementById('em-name').value.trim()  || g.name;
+    g.phone  = document.getElementById('em-phone').value.trim() || g.phone;
+    g.status = document.getElementById('em-status').value;
+    g.side   = document.getElementById('em-side').value;
+    if (g.status !== 'pending' && oldStatus === 'pending') g.respondedAt = now();
+    save(guests);
+    closeModal();
+    renderTable();
+    toast('Guest updated!', true);
+}
+
+// ── EXPORT EXCEL ──
+function exportExcel() {
+    if (guests.length === 0) { toast('No guests to export', false); return; }
+
+    const wb = XLSX.utils.book_new();
+
+    // Sheet 1: All Guests
+    const allData = [
+        ['#', 'Full Name', 'WhatsApp Number', 'Side', 'RSVP Status', 'Responded At']
+    ];
+    guests.forEach(g => allData.push([g.id, g.name, g.phone, g.side||'', g.status, g.respondedAt||'']));
+    const ws1 = XLSX.utils.aoa_to_sheet(allData);
+    ws1['!cols'] = [{ wch:4 },{ wch:26 },{ wch:18 },{ wch:16 },{ wch:12 },{ wch:20 }];
+    XLSX.utils.book_append_sheet(wb, ws1, 'All Guests');
+
+    // Sheet 2: Accepted Only
+    const accepted = [['#','Full Name','WhatsApp Number','Side']];
+    guests.filter(g => g.status==='accepted').forEach(g => accepted.push([g.id,g.name,g.phone,g.side||'']));
+    const ws2 = XLSX.utils.aoa_to_sheet(accepted);
+    ws2['!cols'] = [{ wch:4 },{ wch:26 },{ wch:18 },{ wch:16 }];
+    XLSX.utils.book_append_sheet(wb, ws2, 'Accepted');
+
+    // Sheet 3: Pending
+    const pending = [['#','Full Name','WhatsApp Number','Side']];
+    guests.filter(g => g.status==='pending').forEach(g => pending.push([g.id,g.name,g.phone,g.side||'']));
+    const ws3 = XLSX.utils.aoa_to_sheet(pending);
+    ws3['!cols'] = [{ wch:4 },{ wch:26 },{ wch:18 },{ wch:16 }];
+    XLSX.utils.book_append_sheet(wb, ws3, 'Pending');
+
+    // Sheet 4: Summary
+    const a = guests.filter(g=>g.status==='accepted').length;
+    const d = guests.filter(g=>g.status==='declined').length;
+    const p = guests.filter(g=>g.status==='pending').length;
+    const sumData = [
+        ['Gayalan & Induja — Wedding RSVP Summary'],
+        ['Wedding Date', 'October 25, 2026'],
+        ['Venue', 'Kings Gardens Banquet Hall, Colombo'],
+        [''],
+        ['Metric', 'Count'],
+        ['Total Invited', guests.length],
+        ['Accepted',      a],
+        ['Declined',      d],
+        ['Pending',       p],
+        ['Response Rate', `${Math.round(((a+d)/guests.length)*100)}%`],
+        [''],
+        ['Exported on', new Date().toLocaleString()],
+    ];
+    const ws4 = XLSX.utils.aoa_to_sheet(sumData);
+    ws4['!cols'] = [{ wch:22 },{ wch:40 }];
+    XLSX.utils.book_append_sheet(wb, ws4, 'Summary');
+
+    const date = new Date().toISOString().slice(0,10);
+    XLSX.writeFile(wb, `RSVP_GayalanInduja_${date}.xlsx`);
+    toast('Excel file downloaded!', true);
+}
+
+// ── HELPERS ──
+function now() {
+    return new Date().toISOString().slice(0,16).replace('T',' ');
+}
+let toastTimer;
+function toast(msg, success = true) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'show' + (success ? ' green' : '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { el.className = ''; }, 3000);
+}
+
+// ── KEYBOARD ──
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Enter' && document.getElementById('addFormWrap').classList.contains('open')) addGuest();
+});
+
+// ── INIT ──
+renderTable();
+</script>
+</body>
+</html>
