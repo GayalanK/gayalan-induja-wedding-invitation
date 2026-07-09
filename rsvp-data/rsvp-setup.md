@@ -80,6 +80,24 @@ HOW IT WORKS DAY-TO-DAY
   table view, search, and one-click Excel export (see rsvp-manager.html).
 
 
+GUEST WISHBOOK SETUP (optional, uses the same Sheet + script)
+─────────────────────────────────────────────
+The invitation site now has a "Guest Wishbook" where visitors can leave
+a short message. It reuses the same backend — no separate setup needed
+beyond one extra tab:
+
+1. In the same Google Sheet, add a new tab (bottom "+") named exactly: Wishes
+2. Row 1 headers, exactly:
+     A1: Name
+     B1: Message
+     C1: SubmittedAt
+3. Re-paste the updated google-apps-script.gs into Extensions → Apps Script
+   (it now includes the wishbook functions), save, then:
+   Deploy → Manage deployments → edit (pencil icon) → New version → Deploy.
+4. That's it — no changes needed in index.html, it already points at the
+   same RSVP_API_URL. Guests can now leave and read wishes on the site.
+
+
 IF SOMETHING GOES WRONG
 ─────────────────────────────────────────────
 • "RSVP system is being set up" message on the site → the URL in

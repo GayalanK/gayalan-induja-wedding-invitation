@@ -1,0 +1,12 @@
+Drop your love-story photos here, named exactly:
+
+  story_1.jpg   ← "How We Met"
+  story_2.jpg   ← "The Proposal"
+  story_3.jpg   ← "Engaged"
+
+Same tips as the pre-shoot folder: 4:5 portrait ratio (e.g. 800x1000px),
+under 500KB each. They'll replace the "Photo coming soon" placeholders
+automatically once added — no code changes needed.
+
+Also feel free to edit the captions/descriptions for each milestone
+directly in index.html — search for "Our Story" section.

@@ -23,6 +23,7 @@
  */
 
 const SHEET_NAME = 'Guests';
+const WISHES_SHEET_NAME = 'Wishes'; // second tab: Name | Message | SubmittedAt
 
 function normalize_(phone) {
   let p = String(phone).replace(/[^0-9]/g, '');
@@ -52,6 +53,9 @@ function doGet(e) {
   if (action === 'check') {
     return checkGuest_(e.parameter.phone);
   }
+  if (action === 'wishes') {
+    return listWishes_();
+  }
   return jsonResponse_({ success: false, message: 'Unknown action.' });
 }
 
@@ -69,6 +73,9 @@ function doPost(e) {
   }
   if (body.action === 'check') {
     return checkGuest_(body.phone);
+  }
+  if (body.action === 'wish_add') {
+    return addWish_(body.name, body.message);
   }
   return jsonResponse_({ success: false, message: 'Unknown action.' });
 }
@@ -114,4 +121,42 @@ function jsonResponse_(obj) {
   return ContentService
     .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ── GUEST WISHBOOK ──
+// Uses a second tab in the same Sheet, named "Wishes", with headers:
+//   Name | Message | SubmittedAt
+// Create this tab once (see rsvp-setup.md) — no code change needed after that.
+
+function getWishesSheet_() {
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(WISHES_SHEET_NAME);
+}
+
+function addWish_(name, message) {
+  name = String(name || '').trim().slice(0, 80);
+  message = String(message || '').trim().slice(0, 280);
+  if (!name || !message) {
+    return jsonResponse_({ success: false, message: 'Name and message are required.' });
+  }
+  const sheet = getWishesSheet_();
+  if (!sheet) {
+    return jsonResponse_({ success: false, message: 'Wishbook is not set up yet — add a "Wishes" tab, see rsvp-setup.md.' });
+  }
+  sheet.appendRow([name, message, new Date()]);
+  return jsonResponse_({ success: true });
+}
+
+function listWishes_() {
+  const sheet = getWishesSheet_();
+  if (!sheet) {
+    return jsonResponse_({ success: true, wishes: [] });
+  }
+  const rows = sheet.getDataRange().getValues();
+  rows.shift(); // drop header row
+  const wishes = rows
+    .filter(r => r[0] && r[1])
+    .map(r => ({ name: String(r[0]), message: String(r[1]) }))
+    .reverse() // newest first
+    .slice(0, 50); // cap payload size
+  return jsonResponse_({ success: true, wishes: wishes });
 }

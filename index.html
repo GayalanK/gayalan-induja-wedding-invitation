@@ -562,6 +562,71 @@
             pointer-events: none;
         }
 
+        /* ── OUR STORY ── */
+        #story {
+            padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+        }
+        .story-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(28px, 5vw, 48px);
+        }
+        @media (max-width: 720px) {
+            .story-grid { grid-template-columns: 1fr; max-width: 380px; }
+        }
+        .story-card {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .story-photo {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 20px rgba(61,28,2,0.12);
+            position: relative;
+            background: linear-gradient(135deg, var(--ivory), var(--gold-pale));
+            margin-bottom: 16px;
+        }
+        .story-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .story-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(201,146,42,0.3);
+            pointer-events: none;
+        }
+        .story-photo.g-empty .g-placeholder { display: flex; }
+        .story-photo.g-empty::before {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 1px dashed rgba(201,146,42,0.4);
+            pointer-events: none;
+        }
+        .story-event {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.6rem, 4vw, 2rem);
+            color: var(--crimson);
+            line-height: 1.1;
+        }
+        .story-tamil {
+            font-family: 'Noto Serif Tamil', serif;
+            font-size: 0.85rem;
+            color: var(--saffron);
+            margin: 4px 0 8px;
+        }
+        .story-desc {
+            font-size: 0.9rem;
+            color: var(--brown-mid);
+            line-height: 1.6;
+            font-style: italic;
+            padding: 0 8px;
+        }
+
         /* ── RSVP ── */
         #rsvp {
             padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
@@ -694,6 +759,23 @@
 
         .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
 
+        /* ── ADD TO CALENDAR (hero) ── */
+        .cal-add-wrap {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: clamp(20px, 4vw, 32px);
+        }
+        .cal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            font-size: 0.7rem;
+            text-decoration: none;
+        }
+
         .guest-name-display {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.2rem, 6vw, 3rem);
@@ -722,6 +804,85 @@
             font-size: 1rem;
             color: var(--brown-mid);
             font-style: italic;
+        }
+
+        /* ── GUEST WISHBOOK ── */
+        #wishbook {
+            padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
+            background: var(--ivory);
+        }
+        .wish-box {
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        #wish-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(201,146,42,0.35);
+            padding: clamp(24px, 5vw, 40px);
+        }
+        .wish-name-input { max-width: 100%; }
+        .wish-textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px 16px;
+            border: 1.5px solid rgba(201,146,42,0.5);
+            background: rgba(255,255,255,0.9);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--brown-text);
+            outline: none;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        .wish-textarea:focus { border-color: var(--crimson); }
+        #wish-error {
+            width: 100%;
+            text-align: center;
+            color: #c0392b;
+            font-size: 0.8rem;
+            min-height: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            margin: -4px 0 0;
+        }
+        #wish-error.show { opacity: 1; }
+        .wish-list {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .wish-card {
+            background: rgba(255,255,255,0.6);
+            border-left: 3px solid var(--gold);
+            padding: 16px 20px;
+        }
+        .wish-card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--crimson);
+            margin-bottom: 4px;
+        }
+        .wish-card-msg {
+            font-size: 0.9rem;
+            color: var(--brown-mid);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .wish-empty-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--brown-mid);
+            opacity: 0.75;
+            font-style: italic;
+            padding: 12px 8px 0;
         }
 
         /* ── VENUE ── */
@@ -1012,9 +1173,82 @@
         </div>
     </div>
 
+    <div class="cal-add-wrap" style="opacity:0;transform:translateY(20px)">
+        <a class="btn-accent cal-btn" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Gayalan+%26+Induja%27s+Wedding&dates=20261025T041500Z/20261025T100000Z&details=Join+us+as+we+celebrate+the+wedding+of+Gayalan+%26+Induja.+Full+schedule+on+the+invitation+site.&location=Kings+Gardens+Banquet+Hall%2C+154+Mattakkuliya+Church+Rd%2C+Colombo" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Add to Calendar
+        </a>
+        <button class="btn-ghost cal-btn" onclick="downloadICS()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .ics
+        </button>
+    </div>
+
     <div class="scroll-hint">
         <span>Scroll</span>
         <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- ══════════════════ OUR STORY ══════════════════ -->
+<section id="story">
+    <div class="sec-header story-title" style="opacity:0;transform:translateY(32px)">
+        <p class="sec-eyebrow">How It Began • எங்கள் காதல் கதை</p>
+        <h2 class="sec-title">Our Story</h2>
+        <div class="sec-rule">
+            <div class="sec-rule-line"></div>
+            <div class="sec-rule-diamond"></div>
+            <div class="sec-rule-line"></div>
+        </div>
+    </div>
+
+    <div class="story-grid">
+
+        <!-- 1 -->
+        <div class="story-card">
+            <div class="story-photo">
+                <img src="assets/story/story_1.jpg" alt="How we met" loading="lazy"
+                     onerror="this.closest('.story-photo').classList.add('g-empty'); this.remove();">
+                <div class="g-placeholder">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <span>Photo coming soon</span>
+                </div>
+            </div>
+            <div class="story-event">How We Met</div>
+            <div class="story-tamil">நாங்கள் சந்தித்தது</div>
+            <p class="story-desc">Every love story has a beginning — this is ours. Edit this text to share how your paths first crossed.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="story-card">
+            <div class="story-photo">
+                <img src="assets/story/story_2.jpg" alt="The proposal" loading="lazy"
+                     onerror="this.closest('.story-photo').classList.add('g-empty'); this.remove();">
+                <div class="g-placeholder">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <span>Photo coming soon</span>
+                </div>
+            </div>
+            <div class="story-event">The Proposal</div>
+            <div class="story-tamil">திருமண கோரிக்கை</div>
+            <p class="story-desc">The moment it became forever. Edit this text to share your proposal story.</p>
+        </div>
+
+        <!-- 3 -->
+        <div class="story-card">
+            <div class="story-photo">
+                <img src="assets/story/story_3.jpg" alt="Engagement" loading="lazy"
+                     onerror="this.closest('.story-photo').classList.add('g-empty'); this.remove();">
+                <div class="g-placeholder">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="36" height="27" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 33l9-9 7 7 6-6 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 12V8a2 2 0 012-2h10a2 2 0 012 2v4" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <span>Photo coming soon</span>
+                </div>
+            </div>
+            <div class="story-event">Engaged</div>
+            <div class="story-tamil">நிச்சயதார்த்தம்</div>
+            <p class="story-desc">Surrounded by family and blessings. Edit this text to share your engagement day.</p>
+        </div>
+
     </div>
 </section>
 
@@ -1251,6 +1485,32 @@
     </a>
 </section>
 
+<!-- ══════════════════ GUEST WISHBOOK ══════════════════ -->
+<section id="wishbook">
+    <div class="sec-header wish-title" style="opacity:0;transform:translateY(32px)">
+        <p class="sec-eyebrow">Leave Us a Note • வாழ்த்து செய்தி</p>
+        <h2 class="sec-title">Guest Wishbook</h2>
+        <div class="sec-rule">
+            <div class="sec-rule-line"></div>
+            <div class="sec-rule-diamond"></div>
+            <div class="sec-rule-line"></div>
+        </div>
+    </div>
+
+    <div class="wish-box">
+        <form id="wish-form" onsubmit="submitWish(event)">
+            <input type="text" id="wish-name" class="rsvp-input wish-name-input" placeholder="Your Name" required>
+            <textarea id="wish-message" class="wish-textarea" placeholder="Leave your blessing for Gayalan & Induja..." required maxlength="280"></textarea>
+            <p id="wish-error"></p>
+            <button type="submit" class="btn-primary" id="wish-submit-btn">Send Blessing</button>
+        </form>
+
+        <div id="wish-list" class="wish-list">
+            <!-- Wishes are loaded here once the backend is connected -->
+        </div>
+    </div>
+</section>
+
 <!-- ══════════════════ VENUE ══════════════════ -->
 <section id="venue">
     <div class="sec-header map-title" style="opacity:0;transform:translateY(32px)">
@@ -1409,11 +1669,20 @@ window.addEventListener('load', () => {
           .to('.hero-date',     { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.6')
           .to('.hero-venue',    { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.55')
           .to('#countdown-wrap',{ opacity:1, y:0, duration:0.8, ease:'power3.out' }, '-=0.5')
+          .to('.cal-add-wrap',  { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.4')
           .to('.scroll-hint',   { opacity:1, duration:1, ease:'power2.inOut' }, '-=0.3');
     });
 });
 
 // ── SCROLL ANIMATIONS ──
+gsap.to('.story-title', {
+    scrollTrigger: { trigger: '.story-title', start: 'top 85%' },
+    y:0, opacity:1, duration:1.2, ease:'power3.out'
+});
+gsap.to('.story-card', {
+    scrollTrigger: { trigger: '.story-grid', start: 'top 80%' },
+    y:0, opacity:1, duration:1, stagger:0.18, ease:'power3.out'
+});
 gsap.to('.agenda-title', {
     scrollTrigger: { trigger: '.agenda-title', start: 'top 85%' },
     y:0, opacity:1, duration:1.2, ease:'power3.out'
@@ -1439,6 +1708,10 @@ gsap.to('.rsvp-title', {
 gsap.to('.rsvp-box', {
     scrollTrigger: { trigger: '.rsvp-box', start: 'top 80%' },
     scale:1, opacity:1, duration:1.2, ease:'elastic.out(1,0.8)'
+});
+gsap.to('.wish-title', {
+    scrollTrigger: { trigger: '.wish-title', start: 'top 85%' },
+    y:0, opacity:1, duration:1.2, ease:'power3.out'
 });
 gsap.to('.map-title', {
     scrollTrigger: { trigger: '.map-title', start: 'top 85%' },
@@ -1470,10 +1743,37 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+// ── ADD TO CALENDAR (.ics download, for Apple Calendar / Outlook) ──
+function downloadICS() {
+    const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Gayalan & Induja Wedding//EN',
+        'CALSCALE:GREGORIAN',
+        'BEGIN:VEVENT',
+        'UID:gayalan-induja-wedding-2026@invitation',
+        'DTSTAMP:20260101T000000Z',
+        'DTSTART:20261025T041500Z',
+        'DTEND:20261025T100000Z',
+        'SUMMARY:Gayalan & Induja\'s Wedding',
+        'DESCRIPTION:Join us as we celebrate the wedding of Gayalan & Induja. Full schedule on the invitation site.',
+        'LOCATION:Kings Gardens Banquet Hall\\, 154 Mattakkuliya Church Rd\\, Colombo',
+        'END:VEVENT',
+        'END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Gayalan-Induja-Wedding.ics';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 // ── RSVP LOGIC ──
 // This connects to a free Google Sheet "database" via Google Apps Script.
 // Setup instructions are in RSVP-SETUP.md — paste your deployed Web App URL below.
-const RSVP_API_URL = 'https://docs.google.com/spreadsheets/d/1rm3cngpwId0CmCUAcX_zgld7MGFsucVF3y-9mTc_Z8w/edit?usp=sharing';
+const RSVP_API_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
 let currentGuestPhone = '';
 
@@ -1615,6 +1915,90 @@ function resetRSVP() {
         setTimeout(() => { s1.style.opacity = 1; s1.style.transform = 'translateY(0)'; }, 50);
     }, 420);
 }
+
+// ── GUEST WISHBOOK ──
+// Uses the same backend as RSVP (RSVP_API_URL, see google-apps-script.gs)
+// action=wishes (GET) to list, action=wish_add (POST) to submit.
+function escapeHtml_(str) {
+    const div = document.createElement('div');
+    div.innerText = str;
+    return div.innerHTML;
+}
+
+function loadWishes() {
+    const listEl = document.getElementById('wish-list');
+    if (!isConfigured()) {
+        listEl.innerHTML = '<p class="wish-empty-note">Wishbook connects once the RSVP backend is set up — see rsvp-data/RSVP-SETUP.md. Feel free to send us a message on WhatsApp in the meantime.</p>';
+        return;
+    }
+    fetch(`${RSVP_API_URL}?action=wishes`)
+        .then(r => r.json())
+        .then(data => {
+            if (!data.success || !data.wishes || !data.wishes.length) {
+                listEl.innerHTML = '<p class="wish-empty-note">Be the first to leave a blessing 🪔</p>';
+                return;
+            }
+            listEl.innerHTML = data.wishes.map(w => `
+                <div class="wish-card">
+                    <div class="wish-card-name">${escapeHtml_(w.name)}</div>
+                    <div class="wish-card-msg">${escapeHtml_(w.message)}</div>
+                </div>
+            `).join('');
+        })
+        .catch(() => {
+            listEl.innerHTML = '<p class="wish-empty-note">Could not load wishes right now — please refresh in a moment.</p>';
+        });
+}
+
+function submitWish(event) {
+    event.preventDefault();
+    const errEl = document.getElementById('wish-error');
+    const nameEl = document.getElementById('wish-name');
+    const msgEl = document.getElementById('wish-message');
+    const btn = document.getElementById('wish-submit-btn');
+    errEl.classList.remove('show');
+
+    if (!isConfigured()) {
+        errEl.innerText = 'Wishbook is being set up — please WhatsApp your blessing instead.';
+        errEl.classList.add('show');
+        return;
+    }
+
+    const name = nameEl.value.trim();
+    const message = msgEl.value.trim();
+    if (!name || !message) {
+        errEl.innerText = 'Please fill in both your name and a message.';
+        errEl.classList.add('show');
+        return;
+    }
+
+    btn.innerText = 'Sending...';
+    btn.disabled = true;
+
+    fetch(RSVP_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'wish_add', name, message })
+    }).then(r => r.json()).then(data => {
+        btn.innerText = 'Send Blessing';
+        btn.disabled = false;
+        if (data.success) {
+            nameEl.value = '';
+            msgEl.value = '';
+            loadWishes();
+        } else {
+            errEl.innerText = data.message || 'Could not save your message. Please try again.';
+            errEl.classList.add('show');
+        }
+    }).catch(() => {
+        btn.innerText = 'Send Blessing';
+        btn.disabled = false;
+        errEl.innerText = 'Could not connect. Please try again.';
+        errEl.classList.add('show');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadWishes);
 </script>
 </body>
 </html>
