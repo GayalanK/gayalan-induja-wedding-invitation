@@ -835,6 +835,14 @@ section {
     transition: opacity var(--transition-fast);
 }
 
+#phone-error.show {
+    opacity: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
 .btn-primary {
     padding: 12px 32px;
     background: var(--crimson);

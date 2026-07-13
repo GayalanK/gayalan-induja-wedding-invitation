@@ -1,0 +1,21 @@
+{
+  "name": "Gayalan & Induja Wedding",
+  "short_name": "G & I Wedding",
+  "description": "Join Gayalan & Induja as they celebrate their wedding on Sunday, October 25, 2026 at Kings Gardens Banquet Hall, Colombo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#3E0808",
+  "theme_color": "#6B0F0F",
+  "icons": [
+    {
+      "src": "assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

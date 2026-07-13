@@ -130,15 +130,23 @@
         </div>
 
         <div class="cal-add-wrap">
-            <a href="#" class="cal-btn" id="add-to-cal-google" aria-label="Add to Google Calendar">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Gayalan+%26+Induja%27s+Wedding&dates=20261025T041500Z/20261025T100000Z&details=Join+us+as+we+celebrate+the+wedding+of+Gayalan+%26+Induja.+Full+schedule+on+the+invitation+site.&location=Kings+Gardens+Banquet+Hall%2C+Colombo%2C+Sri+Lanka" class="cal-btn" id="add-to-cal-google" target="_blank" rel="noopener" aria-label="Add to Google Calendar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
                     <line x1="8" y1="2" x2="8" y2="6"></line>
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                Calendar
+                Add to Calendar
             </a>
+            <button class="cal-btn" id="add-to-cal-ics" aria-label="Download calendar file">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download .ics
+            </button>
         </div>
 
         <div class="scroll-hint">
@@ -150,8 +158,8 @@
     <!-- Agenda / Timeline -->
     <section id="agenda">
         <div class="sec-header">
-            <p class="sec-eyebrow">The Ceremony</p>
-            <h2 class="sec-title">Celebrations</h2>
+            <p class="sec-eyebrow">The Sacred Schedule • திருமண நிகழ்ச்சி நிரல்</p>
+            <h2 class="sec-title">Wedding Agenda</h2>
             <div class="sec-rule">
                 <div class="sec-rule-line"></div>
                 <div class="sec-rule-diamond"></div>
@@ -160,41 +168,107 @@
         </div>
 
         <div class="timeline">
+
             <div class="tl-item">
-                <div class="tl-dot-wrap">
-                    <div class="tl-dot"></div>
-                </div>
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
                 <div class="tl-card">
-                    <div class="tl-time">4:00 <span>PM</span></div>
-                    <div class="tl-tamil">விவாહ</div>
-                    <div class="tl-event">Wedding Ceremony</div>
-                    <div class="tl-desc">Witness the sacred union as two souls become one, blessed by tradition and love.</div>
+                    <div class="tl-time">9:45 <span>AM</span></div>
+                    <div class="tl-tamil">மாப்பிள்ளை வரவேற்பு</div>
+                    <div class="tl-event">Arrival of Groom</div>
+                    <div class="tl-desc">Gayalan arrives at the venue, welcomed with traditional rites and blessings.</div>
                 </div>
             </div>
 
             <div class="tl-item">
-                <div class="tl-dot-wrap">
-                    <div class="tl-dot highlight"></div>
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-time">9:55 <span>AM</span></div>
+                    <div class="tl-tamil">மணப்பெண் வரவேற்பு</div>
+                    <div class="tl-event">Arrival of Bride</div>
+                    <div class="tl-desc">Induja arrives, radiant and ready, greeted with equal joy and ceremony.</div>
                 </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot-wrap"><div class="tl-dot highlight"></div></div>
                 <div class="tl-card highlight-card">
-                    <div class="tl-time">5:30 <span>PM</span></div>
-                    <div class="tl-tamil">விருந்து</div>
-                    <div class="tl-event highlight-event">Reception & Dinner</div>
-                    <div class="tl-desc">Join us for an evening of celebration, delicious cuisine, and cherished moments with loved ones.</div>
+                    <div class="tl-time">10:10 <span>AM</span></div>
+                    <div class="tl-tamil">தாலி கட்டுதல்</div>
+                    <div class="tl-event highlight-event">Thali Kattuthal</div>
+                    <div class="tl-desc">The sacred moment — the groom ties the thali, the auspicious thread, marking the union before family and the divine.</div>
                 </div>
             </div>
 
             <div class="tl-item">
-                <div class="tl-dot-wrap">
-                    <div class="tl-dot"></div>
-                </div>
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
                 <div class="tl-card">
-                    <div class="tl-time">10:00 <span>PM</span></div>
-                    <div class="tl-tamil">নাচ</div>
-                    <div class="tl-event">Celebration & Dance</div>
-                    <div class="tl-desc">Dance the night away and celebrate this beautiful beginning with music and joy.</div>
+                    <div class="tl-time">10:30 <span>AM</span></div>
+                    <div class="tl-tamil">பாணி கிரகணம்</div>
+                    <div class="tl-event">Pani Grahanam</div>
+                    <div class="tl-desc">The couple's hands are joined, symbolizing their journey together as one.</div>
                 </div>
             </div>
+
+            <div class="tl-item">
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-time">10:45 <span>AM</span></div>
+                    <div class="tl-tamil">சப்தபதி</div>
+                    <div class="tl-event">Sapthapathi</div>
+                    <div class="tl-desc">Seven sacred steps taken together, each one a vow for the life ahead.</div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-time">10:55 <span>AM</span></div>
+                    <div class="tl-tamil">அருந்ததி பார்தல்</div>
+                    <div class="tl-event">Arundhathi Paarthal</div>
+                    <div class="tl-desc">The couple looks to the star Arundhathi, a symbol of marital devotion and steadfastness.</div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-time">11:30 <span>AM</span></div>
+                    <div class="tl-tamil">திருமண சம்பூர்த்தியங்கள்</div>
+                    <div class="tl-event">Wedding Completion Rites</div>
+                    <div class="tl-desc">The final ceremonial rites, blessings from elders, and formal completion of the wedding.</div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-time">11:45 <span>AM</span></div>
+                    <div class="tl-tamil">விருந்து</div>
+                    <div class="tl-event">Wedding Lunch</div>
+                    <div class="tl-desc">Join us for a traditional feast, shared with family and friends.</div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-time">2:30 <span>PM</span></div>
+                    <div class="tl-tamil">கொண்டாட்டம்</div>
+                    <div class="tl-event">Celebration &amp; Dance</div>
+                    <div class="tl-desc">Music, dance, and joy — celebrating the newlyweds late into the afternoon.</div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+                <div class="tl-card">
+                    <div class="tl-time">3:30 <span>PM</span></div>
+                    <div class="tl-tamil">நிகழ்வு நிறைவு</div>
+                    <div class="tl-event">Leaving the Hall</div>
+                    <div class="tl-desc">The couple departs, carrying with them a lifetime of blessings from everyone here today.</div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -211,7 +285,9 @@
         </div>
 
         <div class="gallery-grid">
-            <div class="g-item g-empty">
+            <div class="g-item">
+                <img src="assets/preshoot/capture_1.jpg" alt="Gayalan &amp; Induja pre-shoot" loading="lazy"
+                     onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
                 <div class="g-placeholder">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -221,7 +297,9 @@
                     <span>Photo coming soon</span>
                 </div>
             </div>
-            <div class="g-item g-empty">
+            <div class="g-item">
+                <img src="assets/preshoot/capture_2.jpg" alt="Gayalan &amp; Induja pre-shoot" loading="lazy"
+                     onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
                 <div class="g-placeholder">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -231,7 +309,9 @@
                     <span>Photo coming soon</span>
                 </div>
             </div>
-            <div class="g-item g-empty">
+            <div class="g-item">
+                <img src="assets/preshoot/capture_3.jpg" alt="Gayalan &amp; Induja pre-shoot" loading="lazy"
+                     onerror="this.closest('.g-item').classList.add('g-empty'); this.remove();">
                 <div class="g-placeholder">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -258,7 +338,9 @@
 
         <div class="story-grid">
             <div class="story-card">
-                <div class="story-photo g-empty">
+                <div class="story-photo">
+                    <img src="assets/story/story_1.jpg" alt="How we met" loading="lazy"
+                         onerror="this.closest('.story-photo').classList.add('g-empty'); this.remove();">
                     <div class="g-placeholder">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -268,13 +350,15 @@
                         <span>Photo coming soon</span>
                     </div>
                 </div>
-                <div class="story-tamil">கயலன்</div>
-                <div class="story-event">Gayalan</div>
-                <div class="story-desc">A journey of dreams, ambitions, and moments that define who we are.</div>
+                <div class="story-tamil">நாங்கள் சந்தித்தது</div>
+                <div class="story-event">How We Met</div>
+                <div class="story-desc">Every love story has a beginning — this is ours. Edit this text to share how your paths first crossed.</div>
             </div>
 
             <div class="story-card">
-                <div class="story-photo g-empty">
+                <div class="story-photo">
+                    <img src="assets/story/story_2.jpg" alt="The proposal" loading="lazy"
+                         onerror="this.closest('.story-photo').classList.add('g-empty'); this.remove();">
                     <div class="g-placeholder">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -284,13 +368,15 @@
                         <span>Photo coming soon</span>
                     </div>
                 </div>
-                <div class="story-tamil">இந்துஜ</div>
-                <div class="story-event">Induja</div>
-                <div class="story-desc">Two paths converged, and in that moment, everything made sense—forever became possible.</div>
+                <div class="story-tamil">திருமண கோரிக்கை</div>
+                <div class="story-event">The Proposal</div>
+                <div class="story-desc">The moment it became forever. Edit this text to share your proposal story.</div>
             </div>
 
             <div class="story-card">
-                <div class="story-photo g-empty">
+                <div class="story-photo">
+                    <img src="assets/story/story_3.jpg" alt="Engagement" loading="lazy"
+                         onerror="this.closest('.story-photo').classList.add('g-empty'); this.remove();">
                     <div class="g-placeholder">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -300,9 +386,9 @@
                         <span>Photo coming soon</span>
                     </div>
                 </div>
-                <div class="story-tamil">சேர்க்க</div>
-                <div class="story-event">Together</div>
-                <div class="story-desc">When two hearts beat as one, life becomes a beautiful symphony of shared dreams and endless love.</div>
+                <div class="story-tamil">நிச்சயதார்த்தம்</div>
+                <div class="story-event">Engaged</div>
+                <div class="story-desc">Surrounded by family and blessings. Edit this text to share your engagement day.</div>
             </div>
         </div>
     </section>
@@ -321,36 +407,47 @@
 
         <div class="rsvp-box">
             <div id="rsvp-step-1" class="rsvp-step">
-                <h3>What's your name?</h3>
-                <input 
-                    type="text" 
-                    id="guest-name" 
+                <h3>Enter your WhatsApp number</h3>
+                <input
+                    type="tel"
+                    id="mobile-number"
                     class="rsvp-input"
-                    placeholder="Your name"
-                    aria-label="Enter your name"
-                    maxlength="100"
+                    placeholder="e.g. 0771234567"
+                    aria-label="Enter your WhatsApp number"
+                    maxlength="15"
+                    inputmode="tel"
                 >
+                <p id="phone-error"></p>
                 <button class="btn-primary" id="rsvp-next-btn">Continue</button>
             </div>
 
-            <div id="rsvp-step-2" class="rsvp-step" style="opacity: 0; transform: translateX(20px);">
-                <h3>Can you attend?</h3>
+            <div id="rsvp-step-2" class="rsvp-step hidden" style="opacity: 0; transform: translateX(20px);">
+                <h3>Hello, <span id="guest-name-display">Guest</span> 👋</h3>
+                <p style="margin: 0 0 20px; font-size: 0.9rem; color: var(--brown-mid);">Will you be joining us?</p>
                 <div class="btn-row">
                     <button class="btn-accent" id="rsvp-yes-btn">Yes, I'll be there</button>
                     <button class="btn-ghost" id="rsvp-no-btn">Sorry, can't make it</button>
                 </div>
             </div>
 
-            <div id="rsvp-confirm" class="rsvp-step" style="opacity: 0; transform: translateX(20px);">
+            <div id="rsvp-step-3" class="rsvp-step hidden" style="opacity: 0; transform: translateX(20px);">
                 <div class="rsvp-confirm-script">Thank you!</div>
                 <div class="guest-name-display" id="confirm-guest-name">Guest</div>
                 <div id="status-badge-container"></div>
                 <div class="rsvp-confirm-body" id="confirm-message">We look forward to celebrating with you.</div>
-                <button class="btn-primary" id="share-btn" style="margin-top: 20px;">Share the news</button>
+                <button class="btn-ghost" id="rsvp-reset-btn" style="margin-top: 20px;">Change my response</button>
+            </div>
+
+            <div id="rsvp-step-status" class="rsvp-step hidden" style="opacity: 0; transform: translateX(20px);">
+                <div class="rsvp-confirm-script">Welcome back!</div>
+                <div class="guest-name-display" id="status-guest-name">Guest</div>
+                <div id="status-badge-container-2"></div>
+                <div class="rsvp-confirm-body" id="status-message">Here's your current response.</div>
+                <button class="btn-ghost" id="rsvp-change-btn" style="margin-top: 20px;">Change my response</button>
             </div>
         </div>
 
-        <a href="https://wa.me/94XXXXXXXXX?text=Hi%2C%20I%27d%20like%20to%20RSVP%20for%20the%20wedding" class="rsvp-wa-fallback" aria-label="RSVP via WhatsApp">Or RSVP via WhatsApp</a>
+        <a href="https://wa.me/94XXXXXXXXX?text=Vanakkam!%20I%27d%20like%20to%20RSVP%20for%20the%20wedding." target="_blank" rel="noopener" class="rsvp-wa-fallback" aria-label="RSVP via WhatsApp">Trouble RSVPing online? Message us on WhatsApp instead →</a>
     </section>
 
     <!-- Wishbook / Guest Book -->
@@ -437,7 +534,7 @@
 
         <div class="venue-note">
             <strong>Kings Gardens Banquet Hall</strong> • Colombo, Sri Lanka<br>
-            Sunday, October 25, 2026 | 4:00 PM onwards<br>
+            Sunday, October 25, 2026 | 9:45 AM onwards<br>
             <em>Dress code: Formal / Traditional Attire</em>
         </div>
     </section>
