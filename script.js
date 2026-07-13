@@ -10,7 +10,7 @@
    URL (starts with https://script.google.com/macros/.../exec) —
    NOT a normal Google Sheets link. Replace it with your real
    deployment URL once you've completed the setup steps. */
-const RSVP_API_URL = 'https://docs.google.com/spreadsheets/d/1rm3cngpwId0CmCUAcX_zgld7MGFsucVF3y-9mTc_Z8w/edit?usp=sharing';
+const RSVP_API_URL = 'https://script.google.com/macros/s/AKfycbw7_PeA0p4Xocej6HV49-0FEI21wq1ph23AQPL_tP2ViQTilM0Yqh0roMaY9AI-uWwIXg/exec';
 
 function isConfigured() {
     return RSVP_API_URL && RSVP_API_URL.startsWith('https://script.google.com/');
