@@ -25,6 +25,12 @@
 const SHEET_NAME = 'Guests';
 const WISHES_SHEET_NAME = 'Wishes'; // second tab: Name | Message | SubmittedAt
 
+// IMPORTANT: getActiveSpreadsheet() returns null when this script runs as a
+// deployed Web App (there's no "active" sheet in that context) — so we open
+// the spreadsheet explicitly by its ID instead. This is your Sheet's ID,
+// taken from its URL: https://docs.google.com/spreadsheets/d/THIS_PART/edit
+const SPREADSHEET_ID = '1rm3cngpwId0CmCUAcX_zgld7MGFsucVF3y-9mTc_Z8w';
+
 function normalize_(phone) {
   let p = String(phone).replace(/[^0-9]/g, '');
   if (p.startsWith('94')) p = '0' + p.slice(2);
@@ -33,7 +39,7 @@ function normalize_(phone) {
 }
 
 function getSheet_() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  return SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
 }
 
 function readGuests_() {
@@ -49,35 +55,46 @@ function readGuests_() {
 
 // Handles GET requests, e.g. ?action=check&phone=0771234567
 function doGet(e) {
-  const action = e.parameter.action;
-  if (action === 'check') {
-    return checkGuest_(e.parameter.phone);
+  try {
+    const action = e.parameter.action;
+    if (action === 'check') {
+      return checkGuest_(e.parameter.phone);
+    }
+    if (action === 'wishes') {
+      return listWishes_();
+    }
+    return jsonResponse_({ success: false, message: 'Unknown action.' });
+  } catch (err) {
+    return jsonResponse_({ success: false, message: 'Server error: ' + err.message });
   }
-  if (action === 'wishes') {
-    return listWishes_();
-  }
-  return jsonResponse_({ success: false, message: 'Unknown action.' });
 }
 
 // Handles POST requests for updating status (uses POST so it's a write action)
 function doPost(e) {
-  let body;
   try {
-    body = JSON.parse(e.postData.contents);
-  } catch (err) {
-    return jsonResponse_({ success: false, message: 'Invalid request.' });
-  }
+    let body;
+    try {
+      body = JSON.parse(e.postData.contents);
+    } catch (err) {
+      return jsonResponse_({ success: false, message: 'Invalid request.' });
+    }
 
-  if (body.action === 'update') {
-    return updateGuestStatus_(body.phone, body.status);
+    if (body.action === 'update') {
+      return updateGuestStatus_(body.phone, body.status);
+    }
+    if (body.action === 'check') {
+      return checkGuest_(body.phone);
+    }
+    if (body.action === 'register') {
+      return registerGuest_(body.phone, body.name);
+    }
+    if (body.action === 'wish_add') {
+      return addWish_(body.name, body.message);
+    }
+    return jsonResponse_({ success: false, message: 'Unknown action.' });
+  } catch (err) {
+    return jsonResponse_({ success: false, message: 'Server error: ' + err.message });
   }
-  if (body.action === 'check') {
-    return checkGuest_(body.phone);
-  }
-  if (body.action === 'wish_add') {
-    return addWish_(body.name, body.message);
-  }
-  return jsonResponse_({ success: false, message: 'Unknown action.' });
 }
 
 function checkGuest_(rawPhone) {
@@ -94,6 +111,35 @@ function checkGuest_(rawPhone) {
       name: match.name,
       status: String(match.status || 'pending').toLowerCase()
     }
+  });
+}
+
+// Adds a new guest row for phone numbers not already on the list
+// (self-registration — used when checkGuest_ finds no match).
+// If the number turns out to already exist, returns that existing
+// guest instead of creating a duplicate row.
+function registerGuest_(rawPhone, name) {
+  name = String(name || '').trim().slice(0, 100);
+  if (!rawPhone || !name) {
+    return jsonResponse_({ success: false, message: 'Name and phone number are required.' });
+  }
+  const target = normalize_(rawPhone);
+  const sheet = getSheet_();
+  const guests = readGuests_();
+  const existing = guests.find(g => normalize_(g.phone) === target);
+
+  if (existing) {
+    return jsonResponse_({
+      success: true,
+      guest: { name: existing.name, status: String(existing.status || 'pending').toLowerCase() }
+    });
+  }
+
+  sheet.appendRow([name, rawPhone, '', 'pending', '']);
+
+  return jsonResponse_({
+    success: true,
+    guest: { name: name, status: 'pending' }
   });
 }
 
@@ -129,7 +175,7 @@ function jsonResponse_(obj) {
 // Create this tab once (see rsvp-setup.md) — no code change needed after that.
 
 function getWishesSheet_() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(WISHES_SHEET_NAME);
+  return SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(WISHES_SHEET_NAME);
 }
 
 function addWish_(name, message) {

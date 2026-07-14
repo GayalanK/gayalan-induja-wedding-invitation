@@ -230,6 +230,19 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = `<span class="status-badge ${cls}">${label}</span>`;
     }
 
+    function showRegisterError(msg) {
+        const el = document.getElementById('register-error');
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.add('show');
+    }
+    function clearRegisterError() {
+        const el = document.getElementById('register-error');
+        if (!el) return;
+        el.textContent = '';
+        el.classList.remove('show');
+    }
+
     const nextBtn = document.getElementById('rsvp-next-btn');
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
@@ -257,7 +270,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     nextBtn.textContent = 'Continue';
 
                     if (!data.success || !data.guest) {
-                        showPhoneError("We couldn't find your invitation with that number — please check it, or message us on WhatsApp below.");
+                        // Not on the pre-filled list — offer self-registration instead of a dead end
+                        currentGuestPhone = phone;
+                        clearRegisterError();
+                        transitionStep('rsvp-step-1', 'rsvp-step-1b');
                         return;
                     }
 
@@ -286,6 +302,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const registerBtn = document.getElementById('rsvp-register-btn');
+    if (registerBtn) {
+        registerBtn.addEventListener('click', () => {
+            clearRegisterError();
+            const nameInput = document.getElementById('new-guest-name');
+            const name = nameInput ? nameInput.value.trim() : '';
+            if (!name) {
+                showRegisterError('Please enter your name.');
+                return;
+            }
+            if (!currentGuestPhone) {
+                showRegisterError('Something went wrong — please go back and re-enter your number.');
+                return;
+            }
+
+            registerBtn.disabled = true;
+            registerBtn.textContent = 'Saving...';
+
+            fetch(RSVP_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: 'register', phone: currentGuestPhone, name })
+            }).then(r => r.json()).then(data => {
+                registerBtn.disabled = false;
+                registerBtn.textContent = 'Continue';
+
+                if (!data.success || !data.guest) {
+                    showRegisterError(data.message || 'Could not save your details — please try again.');
+                    return;
+                }
+
+                currentGuestName = data.guest.name || name;
+                document.getElementById('guest-name-display').textContent = currentGuestName;
+                transitionStep('rsvp-step-1b', 'rsvp-step-2');
+            }).catch(() => {
+                registerBtn.disabled = false;
+                registerBtn.textContent = 'Continue';
+                showRegisterError('Something went wrong — please try again.');
+            });
+        });
+    }
+
     function submitRsvpStatus(status) {
         if (!isConfigured() || !currentGuestPhone) return;
         fetch(RSVP_API_URL, {
@@ -311,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (noBtn) noBtn.addEventListener('click', () => submitRsvpStatus('declined'));
 
     function resetRSVP() {
-        ['rsvp-step-2', 'rsvp-step-3', 'rsvp-step-status'].forEach(id => {
+        ['rsvp-step-1b', 'rsvp-step-2', 'rsvp-step-3', 'rsvp-step-status'].forEach(id => {
             const el = document.getElementById(id);
             if (el) { el.classList.add('hidden'); gsap.set(el, { opacity: 0, x: 20 }); }
         });
@@ -322,7 +380,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const input = document.getElementById('mobile-number');
         if (input) input.value = '';
+        const nameInput = document.getElementById('new-guest-name');
+        if (nameInput) nameInput.value = '';
         clearPhoneError();
+        clearRegisterError();
     }
 
     const resetBtn = document.getElementById('rsvp-reset-btn');
