@@ -110,15 +110,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 1, scale: 1, duration: 1, ease: 'power3.out'
             });
         }
+       gsap.utils.toArray(".venue-map").forEach((el, i) => {
+
+    gsap.fromTo(
+        el,
+        {
+            x: -40,
+            autoAlpha: 0
+        },
+        {
+            x: 0,
+            autoAlpha: 1,
+            duration: 0.9,
+            delay: i * 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: el,
+                start: "top 80%"
+            }
+        }
+    );
+
+});
           // gsap.to(el, {
           // scrollTrigger: { trigger: '.venue-grid', start: 'top 80%' },
           // opacity: 1, x: 0, duration: 0.9, delay: i * 0.15, ease: 'power3.out'
-        gsap.utils.toArray('.venue-map').forEach((el, i) => {
-            gsap.to(el, {
-                scrollTrigger: { trigger: '.venue-grid', start: 'top 80%' },
-                opacity: 1, duration: 0.9, delay: i * 0.15, ease: 'power3.out'
-            });
-        });
+        // gsap.utils.toArray('.venue-map').forEach((el, i) => {
+        //     gsap.to(el, {
+        //         scrollTrigger: { trigger: '.venue-grid', start: 'top 80%' },
+        //         opacity: 1, duration: 0.9, delay: i * 0.15, ease: 'power3.out'
+        //     });
+        // });
     }
 
     /* ══════════════ COUNTDOWN ══════════════ */
