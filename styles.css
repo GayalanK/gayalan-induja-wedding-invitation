@@ -1182,7 +1182,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 24px;
-   align: center;
+    align: center;
 }
 
 .venue-map {
@@ -1197,6 +1197,7 @@ section {
     box-shadow: var(--shadow-lg);
     opacity: 0;
     transform: translateX(-40px);
+    align: center;
 }
 
 .venue-map:nth-child(2) { 
@@ -1235,7 +1236,7 @@ section {
 }
 
 .venue-photo-grid .g-item { 
-    aspect-ratio: 4/3; 
+    aspect-ratio: 16 / 9; 
 }
 
 /* ── FOOTER ── */
