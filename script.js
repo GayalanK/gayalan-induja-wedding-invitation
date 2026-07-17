@@ -346,11 +346,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function submitRsvpStatus(status) {
         if (!isConfigured() || !currentGuestPhone) return;
+        const errEl = document.getElementById('rsvp-status-error');
+        if (errEl) { errEl.textContent = ''; errEl.classList.remove('show'); }
+        if (yesBtn) yesBtn.disabled = true;
+        if (noBtn) noBtn.disabled = true;
+
         fetch(RSVP_API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify({ action: 'update', phone: currentGuestPhone, status })
         }).then(r => r.json()).then(data => {
+            if (yesBtn) yesBtn.disabled = false;
+            if (noBtn) noBtn.disabled = false;
+
+            if (!data.success) {
+                if (errEl) {
+                    errEl.textContent = data.message || 'Could not save your response — please try again.';
+                    errEl.classList.add('show');
+                }
+                return;
+            }
+
             document.getElementById('confirm-guest-name').textContent = currentGuestName;
             renderStatusBadge('status-badge-container', status);
             document.getElementById('confirm-message').textContent =
@@ -359,7 +375,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     : "We'll miss you, but thank you for letting us know.";
             transitionStep('rsvp-step-2', 'rsvp-step-3');
         }).catch(() => {
-            showPhoneError('Could not save your response — please try again.');
+            if (yesBtn) yesBtn.disabled = false;
+            if (noBtn) noBtn.disabled = false;
+            if (errEl) {
+                errEl.textContent = 'Could not save your response — please try again.';
+                errEl.classList.add('show');
+            }
         });
     }
 
