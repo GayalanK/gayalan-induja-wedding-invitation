@@ -1200,9 +1200,9 @@ section {
     align: center;
 }
 
-.venue-map:nth-child(2) { 
+/* .venue-map:nth-child(2) { 
     transform: translateX(40px); 
-}
+} */
 
 .venue-map iframe { 
     width: 100%; 
