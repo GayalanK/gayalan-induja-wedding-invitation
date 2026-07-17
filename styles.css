@@ -1168,7 +1168,7 @@ section {
 }
 
 /* ── VENUE ── */
-#venue {
+/* #venue {
     padding: clamp(60px, 12vw, 100px) clamp(16px, 5vw, 48px);
     background: var(--cream);
     border-top: 1px solid rgba(201,146,42,0.2);
@@ -1198,13 +1198,13 @@ section {
     opacity: 0;
     transform: translateX(-40px);
     align: center;
-}
+} */
 
 /* .venue-map:nth-child(2) { 
     transform: translateX(40px); 
 } */
 
-.venue-map iframe { 
+/* .venue-map iframe { 
     width: 100%; 
     height: 100%; 
     border: 0; 
@@ -1237,6 +1237,35 @@ section {
 
 .venue-photo-grid .g-item { 
     aspect-ratio: 16 / 9; 
+} */
+/* ── VENUE ── */
+.venue-grid{
+    max-width:800px;
+    width:100%;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    align-items:center;
+}
+
+.venue-map{
+    width:100%;
+    height:500px;
+    overflow:hidden;
+    position:relative;
+    border:3px solid #fff;
+    box-shadow:var(--shadow-lg);
+
+    opacity:0;
+    transform:translateX(-40px);
+}
+
+.venue-map iframe{
+    width:100%;
+    height:100%;
+    display:block;
+    border:0;
 }
 
 /* ── FOOTER ── */
