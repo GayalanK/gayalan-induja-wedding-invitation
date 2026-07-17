@@ -86,6 +86,25 @@ body::before {
     pointer-events: none;
 }
 
+.ganesha-watermark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(calc(-50% + 13px), calc(-50% - 5px));
+    width: 600px;
+    max-width: none;
+    opacity: 0.20;
+    filter: sepia(1) saturate(2) hue-rotate(-8deg) brightness(0.9);
+    z-index: -1;
+    pointer-events: none;
+}
+
+@media (max-width: 700px) {
+    .ganesha-watermark {
+        width: 380px;
+    }
+}
+
 .corner-ornament {
     position: absolute;
     width: 80px;
