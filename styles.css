@@ -329,6 +329,16 @@ section {
     opacity: 0;
 }
 
+.hero-parents {
+    font-size: clamp(0.75rem, 2.2vw, 0.95rem);
+    font-style: italic;
+    color: rgba(246,238,224,0.75);
+    margin-top: 12px;
+    letter-spacing: 0.03em;
+    line-height: 1.7;
+    opacity: 0;
+}
+
 .hero-venue {
     font-size: clamp(0.7rem, 2vw, 0.9rem);
     letter-spacing: 0.2em;
