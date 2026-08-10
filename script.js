@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ══════════════ COUNTDOWN ══════════════ */
-    const weddingDate = new Date('2026-10-25T09:45:00+05:30').getTime();
+    const weddingDate = new Date('2026-10-25T08:00:00+05:30').getTime();
 
     function updateCountdown() {
         const now = Date.now();
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'BEGIN:VEVENT',
             'UID:gayalan-induja-wedding-2026@invitation',
             'DTSTAMP:20260101T000000Z',
-            'DTSTART:20261025T041500Z',
+            'DTSTART:20261025T023000Z',
             'DTEND:20261025T100000Z',
             "SUMMARY:Gayalan & Induja's Wedding",
             'DESCRIPTION:Join us as we celebrate the wedding of Gayalan & Induja. Full schedule on the invitation site.',
