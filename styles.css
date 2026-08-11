@@ -1234,20 +1234,10 @@ section {
     pointer-events: none;
 }
 
-.venue-note {
-    max-width: 700px;
-    margin: 20px auto 0;
-    text-align: center;
-    font-size: 0.85rem;
-    font-style: italic;
-    color: var(--brown-mid);
-    opacity: 0.85;
-    line-height: 1.7;
-}
-
 .venue-photo-grid .g-item { 
     aspect-ratio: 16 / 9; 
-} */
+}
+
 /* ── VENUE ── */
 .venue-grid{
     max-width:800px;
@@ -1281,11 +1271,11 @@ section {
     max-width: 700px;
     margin: 20px auto 0;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: clamp(1rem, 2.6vw, 1.15rem);
     font-style: italic;
     color: var(--brown-mid);
-    opacity: 0.85;
-    line-height: 1.7;
+    opacity: 0.9;
+    line-height: 1.8;
 }
 
 /* ── FOOTER ── */
